@@ -1,5 +1,4 @@
 export default function(fields) {
-    console.log("fields: ", fields);
     let errors = {};
     const validationSchema = {
         firstname: {
@@ -30,7 +29,7 @@ export default function(fields) {
             message: "Nickname field is required",
             isValid: function(value) {
                 if (value.trim() === "") return false;
-                let regex = new RegExp("$[a-zA-Z0-9_]{3,}$");
+                let regex = /^\w{1,}$/;
                 return regex.test(value);
             }
         },
@@ -38,7 +37,7 @@ export default function(fields) {
             message: "Password field is required",
             isValid: function(value) {
                 if (value.trim() === "") return false;
-                let regex = new RegExp("^[a-zA-Z0-9]{8,30}$");
+                let regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,30})");
                 return regex.test(value);
             }
         },
@@ -46,7 +45,6 @@ export default function(fields) {
         cpassword: {
             message: "Passwords do not match",
             isValid: function(value) {
-                console.log(fields["password"]);
                 return value === fields["password"];
             }
         }

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import validateSignupFields from "../../helpers/validateSignupFields";
+import { connect } from "react-redux";
+import { createUserAccount } from "../../redux/actions/auth-actions";
 
 class Signup extends Component {
     constructor(props) {
@@ -30,7 +32,22 @@ class Signup extends Component {
         e.preventDefault();
         const fields = this.state.input;
         let checkError = validateSignupFields(fields);
-        console.log(checkError);
+        let error = false;
+        // check if  fields contains an error
+
+        for (const key in checkError) {
+            if (checkError[key]) {
+                error = true;
+            }
+        }
+        if (error) {
+            console.log(checkError);
+            console.log("There are fields with errors");
+        } else {
+            let data = { ...fields };
+            delete data.cpassword;
+            this.props.createUserAccount(data);
+        }
     };
 
     render() {
@@ -125,4 +142,16 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+const mapStateToProps = (state) => {
+    return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createUserAccount: (data) => {
+            return dispatch(createUserAccount(data));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
