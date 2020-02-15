@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logUserIn } from "../../redux/actions/auth-actions";
+import Button from "@material-ui/core/Button";
+import Input from "@material-ui/core/Input";
 
 class Login extends Component {
     constructor(props) {
@@ -35,28 +37,28 @@ class Login extends Component {
                 <form onSubmit={this.login} noValidate>
                     <div>
                         <label htmlFor='username'>
-                            <input
+                            <Input
                                 type='text'
                                 placeholder='username or email'
                                 id='username'
                                 value={username}
-                                onChange={this.handleInputChange}
-                            />
+                                onChange={this.handleInputChange}></Input>
                         </label>
                     </div>
                     <div>
                         <label htmlFor='password'>
-                            <input
+                            <Input
                                 type='password'
                                 placeholder='Password'
                                 id='password'
                                 value={password}
-                                onChange={this.handleInputChange}
-                            />
+                                onChange={this.handleInputChange}></Input>
                         </label>
                     </div>
                     <div>
-                        <button type='submit'>Login</button>
+                        <Button type='submit' variant='contained' color='primary'>
+                            Login
+                        </Button>
                     </div>
                 </form>
             </div>

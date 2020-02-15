@@ -3,6 +3,8 @@ import { HashRouter as BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Signup from "./components/authentication/signup";
 import Login from "./components/authentication/login";
+import Profile from "./components/profile/profile";
+import Home from "./components/main/home";
 import { verifyUserAuthentication } from "./redux/actions/auth-actions";
 
 class App extends Component {
@@ -19,8 +21,10 @@ class App extends Component {
             <BrowserRouter>
                 <div className='App'>
                     <Switch>
+                        <Route exact path='/' component={Home} />
                         <Route exact path='/auth/signup' component={Signup} />
                         <Route exact path='/auth/login' component={Login} />
+                        <Route exact path='/profile/:profile_id' component={Profile} />
                     </Switch>
                 </div>
             </BrowserRouter>
