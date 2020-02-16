@@ -1,0 +1,40 @@
+div.camp-navigation-bar {
+  position: fixed;
+  background: #fff;
+  top: 0;
+  width: 100%;
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+div.camp-navigation-bar nav.camp-mobile-navigation-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+div.camp-navigation-bar nav.camp-mobile-navigation-bar div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  text-align: center;
+  line-height: 60px;
+}
+
+div.camp-navigation-bar nav.camp-mobile-navigation-bar div a {
+  text-decoration: none;
+  width: 50%;
+  text-align: center;
+}
+
+div.camp-navigation-bar nav.camp-mobile-navigation-bar div a li {
+  display: block;
+  list-style-type: none;
+}
+/*# sourceMappingURL=navigation.css.map */

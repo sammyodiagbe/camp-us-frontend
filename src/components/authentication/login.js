@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logUserIn } from "../../redux/actions/auth-actions";
-import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
+import "../../styles/authentication/auth.css";
 
 class Login extends Component {
     constructor(props) {
@@ -33,32 +32,33 @@ class Login extends Component {
         const { input } = this.state;
         const { username, password } = input;
         return (
-            <div>
+            <div className='camp-auth-container'>
+                <h1 className='camp-auth-title'>Login</h1>
                 <form onSubmit={this.login} noValidate>
                     <div>
                         <label htmlFor='username'>
-                            <Input
+                            <input
                                 type='text'
                                 placeholder='username or email'
                                 id='username'
                                 value={username}
-                                onChange={this.handleInputChange}></Input>
+                                onChange={this.handleInputChange}
+                            />
                         </label>
                     </div>
                     <div>
                         <label htmlFor='password'>
-                            <Input
+                            <input
                                 type='password'
                                 placeholder='Password'
                                 id='password'
                                 value={password}
-                                onChange={this.handleInputChange}></Input>
+                                onChange={this.handleInputChange}
+                            />
                         </label>
                     </div>
                     <div>
-                        <Button type='submit' variant='contained' color='primary'>
-                            Login
-                        </Button>
+                        <button type='submit'>Login</button>
                     </div>
                 </form>
             </div>

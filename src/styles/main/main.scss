@@ -1,0 +1,115 @@
+div.camp-main-content {
+    margin-top: 60px;
+    padding: 1em 0.5em;
+    background: #efefef;
+    min-height: calc(100vh - 60px);
+
+    // balloon head
+
+    div.camp-balloon-head {
+        background: #fff;
+        padding: 1em 0.7em;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1em;
+        div.camp-head-top,
+        div.camp-head-bottom {
+            width: 100%;
+        }
+        div.camp-head-top {
+            display: flex;
+            div.camp-user-avatar {
+                width: 80px;
+                height: 80px;
+                background: #efefef;
+                align-self: flex-start;
+                border-radius: 50%;
+            }
+
+            div.camp-user-details {
+                padding-top: 1em;
+                padding-left: 1em;
+                flex: 1;
+
+                h2,
+                p {
+                    color: #555;
+                }
+                h2 {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        div.camp-head-bottom {
+            padding: 1em 0;
+
+            textarea {
+                width: 100%;
+                max-width: 100%;
+                resize: none;
+                border: 1px solid #cfcfcf;
+                padding: 1em;
+                padding-left: 1em;
+                font-size: 1em;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    // user says
+
+    div.camp-render-says {
+        div.camp-a-say {
+            background: #fff;
+
+            margin-bottom: 1em;
+            div.camp-say-top {
+                display: flex;
+                padding: 0.7em;
+                div.camp-say-talker {
+                    height: 60px;
+                    width: 60px;
+                    background: #efefef;
+                    border-radius: 50%;
+                }
+
+                div.camp-say-talker-details {
+                    padding-top: 0.7em;
+                    padding-left: 0.7em;
+                    flex: 1;
+                }
+
+                div.camp-say-time {
+                    padding-top: 0.7em;
+                    p {
+                        font-size: 0.9em;
+                    }
+                }
+            }
+
+            div.camp-say-bottom {
+                padding-top: 0.5em;
+                div.camp-say-say {
+                    padding: 0 0.7em;
+                    padding-bottom: 1em;
+                }
+
+                div.camp-say-reaction {
+                    display: flex;
+                    padding: 0.3em 0;
+                    button {
+                        padding: 0.7em 0;
+                        flex: 1;
+                        background: transparent;
+                        font-weight: bold;
+                        outline: none;
+                        &:nth-child(1) {
+                            border-right: 1px solid rgba(0, 0, 0, 0.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

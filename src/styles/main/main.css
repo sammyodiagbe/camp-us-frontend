@@ -1,0 +1,137 @@
+div.camp-main-content {
+  margin-top: 60px;
+  padding: 1em 0.5em;
+  background: #efefef;
+  min-height: calc(100vh - 60px);
+}
+
+div.camp-main-content div.camp-balloon-head {
+  background: #fff;
+  padding: 1em 0.7em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 1em;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-top,
+div.camp-main-content div.camp-balloon-head div.camp-head-bottom {
+  width: 100%;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-avatar {
+  width: 80px;
+  height: 80px;
+  background: #efefef;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  border-radius: 50%;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details {
+  padding-top: 1em;
+  padding-left: 1em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details h2,
+div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details p {
+  color: #555;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details h2 {
+  margin-bottom: 5px;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-bottom {
+  padding: 1em 0;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-head-bottom textarea {
+  width: 100%;
+  max-width: 100%;
+  resize: none;
+  border: 1px solid #cfcfcf;
+  padding: 1em;
+  padding-left: 1em;
+  font-size: 1em;
+  border-radius: 5px;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say {
+  background: #fff;
+  margin-bottom: 1em;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.7em;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-top div.camp-say-talker {
+  height: 60px;
+  width: 60px;
+  background: #efefef;
+  border-radius: 50%;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-top div.camp-say-talker-details {
+  padding-top: 0.7em;
+  padding-left: 0.7em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-top div.camp-say-time {
+  padding-top: 0.7em;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-top div.camp-say-time p {
+  font-size: 0.9em;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom {
+  padding-top: 0.5em;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-say {
+  padding: 0 0.7em;
+  padding-bottom: 1em;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.3em 0;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button {
+  padding: 0.7em 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: transparent;
+  font-weight: bold;
+  outline: none;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button:nth-child(1) {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+/*# sourceMappingURL=main.css.map */

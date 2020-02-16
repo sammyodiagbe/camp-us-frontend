@@ -1,0 +1,28 @@
+div.camp-navigation-bar {
+    position: fixed;
+    background: #fff;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    nav.camp-mobile-navigation-bar {
+        display: flex;
+        height: 60px;
+        align-items: center;
+        width: 100%;
+        div {
+            flex: 1;
+            height: 100%;
+            text-align: center;
+            line-height: 60px;
+            a {
+                text-decoration: none;
+                width: 50%;
+                text-align: center;
+                li {
+                    display: block;
+                    list-style-type: none;
+                }
+            }
+        }
+    }
+}

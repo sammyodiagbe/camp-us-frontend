@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import validateSignupFields from "../../helpers/validateSignupFields";
 import { connect } from "react-redux";
 import { createUserAccount } from "../../redux/actions/auth-actions";
+import "../../styles/authentication/auth.css";
 
 class Signup extends Component {
     constructor(props) {
@@ -54,7 +55,8 @@ class Signup extends Component {
         const { input } = this.state;
         const { firstname, lastname, email, password, cpassword, nickname } = input;
         return (
-            <div>
+            <div className='camp-auth-container'>
+                <h1 className='camp-auth-title'>Create Account</h1>
                 <form onSubmit={this.createUserAccount} noValidate>
                     <div>
                         <label htmlFor='firstname'>

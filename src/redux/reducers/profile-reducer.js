@@ -14,6 +14,7 @@ export default function(state = initialState, action) {
 
         case SET_VIEWED_USER_SAYS:
             state = { ...state, viewed_user_says: payload };
+            break;
         default:
             break;
     }

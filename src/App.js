@@ -6,10 +6,13 @@ import Login from "./components/authentication/login";
 import Profile from "./components/profile/profile";
 import Home from "./components/main/home";
 import { verifyUserAuthentication } from "./redux/actions/auth-actions";
+import "./styles/main/main.css";
 
 class App extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {};
     }
 
     componentDidMount() {
