@@ -23,8 +23,15 @@ div.camp-navigation-bar nav.camp-mobile-navigation-bar div {
       -ms-flex: 1;
           flex: 1;
   height: 100%;
-  text-align: center;
-  line-height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 div.camp-navigation-bar nav.camp-mobile-navigation-bar div a {
@@ -33,8 +40,11 @@ div.camp-navigation-bar nav.camp-mobile-navigation-bar div a {
   text-align: center;
 }
 
-div.camp-navigation-bar nav.camp-mobile-navigation-bar div a li {
-  display: block;
-  list-style-type: none;
+div.camp-navigation-bar nav.camp-mobile-navigation-bar div a .camp-navigation-icon {
+  color: #555;
+}
+
+div.camp-navigation-bar nav.camp-mobile-navigation-bar div a .camp-navigation-icon.active {
+  color: dodgerblue;
 }
 /*# sourceMappingURL=navigation.css.map */

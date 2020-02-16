@@ -6,6 +6,9 @@ import {
     getUserProfile,
     checkRelationship
 } from "../../redux/actions/profile";
+import NavigationBar from "../partials/navigation";
+import HeadBalloon from "../partials/head";
+import Says from "../partials/says";
 
 class Profile extends Component {
     constructor(props) {
@@ -29,17 +32,22 @@ class Profile extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
-            <div>
-                <h1>User profile</h1>
-            </div>
+            <React.Fragment>
+                <NavigationBar />
+                <HeadBalloon />
+                <Says />
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = (state) => {
+    const { authentication, profile } = state;
     return {
-        user: state.authentication.user
+        user: authentication.user,
+        says: profile.viewed_user_says
     };
 };
 

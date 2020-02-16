@@ -104,6 +104,13 @@ div.camp-main-content {
                         background: transparent;
                         font-weight: bold;
                         outline: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .camp-react {
+                            margin-left: 5px;
+                        }
                         &:nth-child(1) {
                             border-right: 1px solid rgba(0, 0, 0, 0.1);
                         }

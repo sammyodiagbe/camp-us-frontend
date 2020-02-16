@@ -129,6 +129,19 @@ div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom di
   background: transparent;
   font-weight: bold;
   outline: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button .camp-react {
+  margin-left: 5px;
 }
 
 div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button:nth-child(1) {

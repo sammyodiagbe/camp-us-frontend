@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../../styles/navigation/navigation.css";
+import { HomeOutlined, SearchOutlined, AccountCircle, SettingsOutlined } from "@material-ui/icons";
 
 class NavigationBar extends Component {
     constructor(props) {
@@ -14,23 +15,26 @@ class NavigationBar extends Component {
             <div className='camp-navigation-bar'>
                 <nav className='camp-mobile-navigation-bar'>
                     <div>
-                        <NavLink to='/'>
-                            <i>Link1</i>
+                        <NavLink to='/hello'>
+                            <HomeOutlined
+                                fontSize='large'
+                                className='camp-navigation-icon active'
+                            />
                         </NavLink>
                     </div>
                     <div>
                         <NavLink to='/'>
-                            <i>Link1</i>
+                            <SearchOutlined fontSize='large' className='camp-navigation-icon' />
                         </NavLink>
                     </div>
                     <div>
                         <NavLink to='/'>
-                            <i>Link1</i>
+                            <AccountCircle fontSize='large' className='camp-navigation-icon' />
                         </NavLink>
                     </div>
                     <div>
                         <NavLink to='/'>
-                            <i>Link1</i>
+                            <SettingsOutlined fontSize='large' className='camp-navigation-icon' />
                         </NavLink>
                     </div>
                 </nav>

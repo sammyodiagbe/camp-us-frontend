@@ -12,15 +12,20 @@ div.camp-navigation-bar {
         div {
             flex: 1;
             height: 100%;
-            text-align: center;
-            line-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             a {
                 text-decoration: none;
                 width: 50%;
                 text-align: center;
-                li {
-                    display: block;
-                    list-style-type: none;
+
+                .camp-navigation-icon {
+                    color: #555;
+
+                    &.active {
+                        color: dodgerblue;
+                    }
                 }
             }
         }

@@ -1,4 +1,5 @@
 import React from "react";
+import { FavoriteOutlined, ChatBubbleOutlineOutlined } from "@material-ui/icons";
 
 const Says = () => {
     return (
@@ -23,8 +24,17 @@ const Says = () => {
                         </p>
                     </div>
                     <div className='camp-say-reaction'>
-                        <button>2.8k Like(s)</button>
-                        <button>15 Comment(s)</button>
+                        <button>
+                            2.8k{" "}
+                            <FavoriteOutlined
+                                fontSize='small'
+                                color='secondary'
+                                className='camp-react'
+                            />
+                        </button>
+                        <button>
+                            15 <ChatBubbleOutlineOutlined fontSize='small' className='camp-react' />
+                        </button>
                     </div>
                 </div>
             </div>
