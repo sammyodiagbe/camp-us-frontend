@@ -1,15 +1,18 @@
 import React from "react";
 import { FavoriteOutlined, ChatBubbleOutlineOutlined } from "@material-ui/icons";
 
-const Says = () => {
-    return (
-        <div className='camp-render-says'>
+const Says = (props) => {
+    const { says } = props;
+    const renderSays = says.map((say, index) => {
+        const { content, said_by } = say;
+        const { firstname, lastname, nickname } = said_by;
+        return (
             <div className='camp-a-say'>
                 <div className='camp-say-top'>
                     <div className='camp-say-talker'></div>
                     <div className='camp-say-talker-details'>
-                        <h4>Odiagbe Samson</h4>
-                        <p>@samsonosaro</p>
+                        <h4>{`${firstname} ${lastname}`}</h4>
+                        <p>{`@${nickname}`}</p>
                     </div>
                     <div className='camp-say-time'>
                         <p>just now</p>
@@ -17,11 +20,7 @@ const Says = () => {
                 </div>
                 <div className='camp-say-bottom'>
                     <div className='camp-say-say'>
-                        <p>
-                            our deepest fear is not that we are inadequate, our deepest fear is that
-                            we are powerful beyond measure, it is our light not our darkness that
-                            frightens us
-                        </p>
+                        <p>{content}</p>
                     </div>
                     <div className='camp-say-reaction'>
                         <button>
@@ -38,29 +37,9 @@ const Says = () => {
                     </div>
                 </div>
             </div>
-            <div className='camp-a-say'>
-                <div className='camp-say-top'>
-                    <div className='camp-say-talker'></div>
-                    <div className='camp-say-talker-details'>
-                        <h4>Odiagbe Samson</h4>
-                        <p>@samsonosaro</p>
-                    </div>
-                    <div className='camp-say-time'>
-                        <p>just now</p>
-                    </div>
-                </div>
-                <div className='camp-say-bottom'>
-                    <div className='camp-say-say'>
-                        <p>
-                            our deepest fear is not that we are inadequate, our deepest fear is that
-                            we are powerful beyond measure, it is our light not our darkness that
-                            frightens us
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+        );
+    });
+    return <div className='camp-render-says'>{renderSays}</div>;
 };
 
 export default Says;

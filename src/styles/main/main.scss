@@ -43,16 +43,31 @@ div.camp-main-content {
 
         div.camp-head-bottom {
             padding: 1em 0;
+            form {
+                textarea {
+                    width: 100%;
+                    max-width: 100%;
+                    resize: none;
+                    border: none;
+                    background: #ccc;
+                    padding: 1em;
+                    padding-left: 1em;
+                    font-size: 1em;
+                    border-radius: 5px;
 
-            textarea {
-                width: 100%;
-                max-width: 100%;
-                resize: none;
-                border: 1px solid #cfcfcf;
-                padding: 1em;
-                padding-left: 1em;
-                font-size: 1em;
-                border-radius: 5px;
+                    &::placeholder {
+                        color: #444;
+                    }
+                }
+
+                button {
+                    padding: 1em 0.8em;
+                    display: block;
+                    width: 100%;
+                    background: dodgerblue;
+                    font-weight: bold;
+                    color: #fff;
+                }
             }
         }
     }

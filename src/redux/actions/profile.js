@@ -19,13 +19,11 @@ export const setViewedUserProfileSays = (says) => {
 
 // get a user says
 export const getUserSays = (id) => {
-    console.log("getting user say");
     return (dispatch) => {
         let getSays = axios.get(`${GET_USER_SAYS}/${id}`, { withCredentials: true });
         getSays
             .then((response) => {
                 const { data } = response;
-                console.log(data);
                 dispatch(setViewedUserProfileSays(data.says));
             })
             .catch((err) => console.log(err));
@@ -34,7 +32,6 @@ export const getUserSays = (id) => {
 
 // get user profile
 export const getUserProfile = (id) => {
-    console.log(id);
     return (dispatch) => {
         let getProfile = axios.get(`${GET_USER_PROFILE}/${id}`, { withCredentials: true });
         getProfile.then((response) => {
@@ -45,10 +42,10 @@ export const getUserProfile = (id) => {
     };
 };
 
-export const checkRelationship = (authuserid, friendid) => {
+export const checkRelationship = (friendid) => {
     return (dispatch) => {
         // check the relationship between authenticated user and the current profile(user)
-        let checkRelationship = axios.get(`${CHECK_RELATIONSHIP}/${authuserid}/${friendid}`, {
+        let checkRelationship = axios.get(`${CHECK_RELATIONSHIP}/${friendid}`, {
             withCredentials: true
         });
         checkRelationship

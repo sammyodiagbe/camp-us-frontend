@@ -9,8 +9,8 @@ class Home extends Component {
             <React.Fragment>
                 <NavigationBar />
                 <div className='camp-main-content'>
-                    <HeadBalloon />
-                    <Says />
+                    <HeadBalloon isAuthUser={true} />
+                    <Says says={[]} />
                 </div>
             </React.Fragment>
         );

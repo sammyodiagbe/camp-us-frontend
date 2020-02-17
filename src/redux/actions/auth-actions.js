@@ -5,7 +5,7 @@ import {
     VERIFY_AUTHENTICATION
 } from "../../helpers/api-end-points";
 import axios from "axios";
-import { SET_ACTIVE_USER, IS_VERIFYING_AUTHENTICATION } from "../action-types";
+import { SET_ACTIVE_USER } from "../action-types";
 import { isCreatingAccount, isLoggingIn, isVerifyingUserAuthentication } from "./app-interaction";
 
 export const createUserAccount = (data) => {

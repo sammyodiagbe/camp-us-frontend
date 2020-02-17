@@ -14,7 +14,10 @@ class Profile extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            isAuthUsers: false,
+            page: "profile"
+        };
     }
 
     componentDidMount() {
@@ -22,6 +25,9 @@ class Profile extends Component {
         const { _id: authUserId } = user;
         const { profile_id } = this.props.match.params;
         if (authUserId === profile_id) {
+            this.setState({
+                isAuthUser: true
+            });
             this.props.setViewProfile(user);
             this.props.getUserSays(authUserId);
         } else {
@@ -32,12 +38,15 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.props);
+        const { says } = this.props;
+        const { isAuthUser, page } = this.state;
         return (
             <React.Fragment>
                 <NavigationBar />
-                <HeadBalloon />
-                <Says />
+                <div className='camp-main-content'>
+                    <HeadBalloon isAuthUser={isAuthUser} page={page} />
+                    <Says says={says} />
+                </div>
             </React.Fragment>
         );
     }

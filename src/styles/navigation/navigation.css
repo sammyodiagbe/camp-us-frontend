@@ -44,7 +44,7 @@ div.camp-navigation-bar nav.camp-mobile-navigation-bar div a .camp-navigation-ic
   color: #555;
 }
 
-div.camp-navigation-bar nav.camp-mobile-navigation-bar div a .camp-navigation-icon.active {
+div.camp-navigation-bar nav.camp-mobile-navigation-bar div a.camp-active-nav .camp-navigation-icon {
   color: dodgerblue;
 }
 /*# sourceMappingURL=navigation.css.map */

@@ -9,7 +9,7 @@ import {
 const initState = {
     isloggingin: false,
     iscreatingaccount: false,
-    isverifyauthentication: false,
+    isverifyingauthentication: false,
     isgettingprofiledetails: false,
     isgettingsays: false
 };
@@ -18,7 +18,7 @@ export default function(state = initState, action) {
     const { type, payload } = action;
     switch (type) {
         case IS_VERIFYING_AUTHENTICATION:
-            state = { ...state, isverifyauthentication: payload };
+            state = { ...state, isverifyingauthentication: payload };
             break;
         case IS_CREATING_ACCOUNT:
             state = { ...state, iscreatingaccount: payload };

@@ -13,3 +13,7 @@ export const CHECK_RELATIONSHIP = `${baseUrl}/profile/check-connection`;
 
 // says
 export const GET_USER_SAYS = `${baseUrl}/says`;
+
+// user interactions
+export const HAVE_SAY = `${baseUrl}/interaction/new-post`;
+export const COMMENT = `${baseUrl}/interaction/new-comment`;

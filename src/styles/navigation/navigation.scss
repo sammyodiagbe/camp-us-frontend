@@ -22,8 +22,10 @@ div.camp-navigation-bar {
 
                 .camp-navigation-icon {
                     color: #555;
+                }
 
-                    &.active {
+                &.camp-active-nav {
+                    .camp-navigation-icon {
                         color: dodgerblue;
                     }
                 }
