@@ -17,3 +17,7 @@ export const GET_USER_SAYS = `${baseUrl}/says`;
 // user interactions
 export const HAVE_SAY = `${baseUrl}/interaction/new-post`;
 export const COMMENT = `${baseUrl}/interaction/new-comment`;
+
+// following and unfollowing =
+export const FOLLOW = `${baseUrl}/connections/follow`;
+export const UNFOLLOW = `${baseUrl}/connections/unfollow`;

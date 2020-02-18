@@ -7,7 +7,7 @@ const Says = (props) => {
         const { content, said_by } = say;
         const { firstname, lastname, nickname } = said_by;
         return (
-            <div className='camp-a-say'>
+            <div className='camp-a-say' key={index}>
                 <div className='camp-say-top'>
                     <div className='camp-say-talker'></div>
                     <div className='camp-say-talker-details'>

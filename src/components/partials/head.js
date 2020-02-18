@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { haveASay } from "../../redux/actions/post-comment";
+import { Link } from "react-router-dom";
+import { followUser, unfollowUser } from "../../redux/actions/profile";
 
 class HeadBalloon extends Component {
     constructor(props) {
@@ -23,16 +25,50 @@ class HeadBalloon extends Component {
         // make post to the backend;
         this.props.postSay(postText);
     };
+
+    unfollowUser = () => {
+        // this.props.unFollowUser()
+        const { user, unfollowUser } = this.props;
+        return unfollowUser(user._id);
+    };
+
+    followUser = () => {
+        const { user, followUser } = this.props;
+        return followUser(user._id);
+    };
     render() {
         const { postText } = this.state;
-        const { page, isAuthUser } = this.props;
+        const { page, isAuthUser, user, relationship } = this.props;
+        const { isMutual, isFollowing } = relationship ? relationship : {};
+        const { firstname, lastname, nickname } = user;
+        const renderActions =
+            page === "profile" && !isAuthUser ? (
+                <div className='camp-relation-container'>
+                    {isFollowing ? (
+                        <button
+                            className='camp-relation camp-realation-unfollow'
+                            onClick={this.unfollowUser}>
+                            Unfollow
+                        </button>
+                    ) : (
+                        <button
+                            className='camp-relation camp-relation-follow'
+                            onClick={this.followUser}>
+                            Follow
+                        </button>
+                    )}
+                    {isMutual && <Link to='/message'>Message</Link>}
+                </div>
+            ) : (
+                <React.Fragment></React.Fragment>
+            );
         return (
             <div className='camp-balloon-head'>
                 <div className='camp-head-top'>
                     <div className='camp-user-avatar'></div>
                     <div className='camp-user-details'>
-                        <h2>Odiagbe Samson</h2>
-                        <p>@samsonosaro</p>
+                        <h2>{`${firstname} ${lastname}`}</h2>
+                        <p>{`@${nickname}`}</p>
                     </div>
                 </div>
                 {isAuthUser && (
@@ -46,6 +82,8 @@ class HeadBalloon extends Component {
                         </form>
                     </div>
                 )}
+
+                {renderActions}
             </div>
         );
     }
@@ -59,6 +97,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         postSay: (content) => {
             return dispatch(haveASay(content));
+        },
+        followUser: (id) => {
+            return dispatch(followUser(id));
+        },
+        unfollowUser: (id) => {
+            return dispatch(unfollowUser(id));
         }
     };
 };
