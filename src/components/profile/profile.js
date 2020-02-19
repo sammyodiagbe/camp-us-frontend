@@ -24,7 +24,6 @@ class Profile extends Component {
         const { user } = this.props;
         const { _id: authUserId } = user;
         const { profile_id } = this.props.match.params;
-        console.log(profile_id);
         if (authUserId === profile_id) {
             this.setState({
                 isAuthUser: true

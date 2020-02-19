@@ -1,5 +1,5 @@
 import axios from "axios";
-import { HAVE_SAY, COMMENT } from "../../helpers/api-end-points";
+import { HAVE_SAY, COMMENT, LIKE_UNLIKE } from "../../helpers/api-end-points";
 
 export const haveASay = (content) => {
     return (dispatch) => {
@@ -24,5 +24,16 @@ export const addComment = (comment, postid) => {
             .catch((err) => {
                 console.log(err);
             });
+    };
+};
+
+export const likeOrUnlike = (postid) => {
+    return (dispatch) => {
+        let likeorunlike = axios.post(LIKE_UNLIKE, { say: postid }, { withCredentials: true });
+        likeorunlike
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => console.log(err));
     };
 };
