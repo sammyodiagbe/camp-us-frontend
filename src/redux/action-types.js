@@ -18,3 +18,6 @@ export const IS_VERIFYING_AUTHENTICATION = "IS_VERIFYING_AUTHENTICATION";
 
 // relationship
 export const SET_RELATIONSHIP = "SET_RELATIONSHIP";
+
+// messages and conversations
+export const GET_CONVERSATIONS = "GET_CONVERSATIONS";

@@ -21,3 +21,6 @@ export const LIKE_UNLIKE = `${baseUrl}/interaction/post/like`;
 // following and unfollowing =
 export const FOLLOW = `${baseUrl}/connections/follow`;
 export const UNFOLLOW = `${baseUrl}/connections/unfollow`;
+
+// getting users conversations
+export const GET_CONVERSATIONS = `${baseUrl}/messaging/get-all-conversations`;

@@ -5,8 +5,8 @@ import {
     HomeOutlined,
     SearchOutlined,
     AccountCircle,
-    SettingsOutlined,
-    NotificationsActiveOutlined
+    NotificationsActiveOutlined,
+    MessageOutlined
 } from "@material-ui/icons";
 import { connect } from "react-redux";
 
@@ -33,23 +33,28 @@ class NavigationBar extends Component {
                 <nav className='camp-mobile-navigation-bar'>
                     <div>
                         <NavLink to='/' exact activeClassName='camp-active-nav'>
-                            <HomeOutlined fontSize='large' className='camp-navigation-icon' />
+                            <HomeOutlined fontSize='default' className='camp-navigation-icon' />
                         </NavLink>
                     </div>
                     <div>
                         <NavLink to='/search' exact activeClassName='camp-active-nav'>
-                            <SearchOutlined fontSize='large' className='camp-navigation-icon' />
+                            <SearchOutlined fontSize='default' className='camp-navigation-icon' />
+                        </NavLink>
+                    </div>
+                    <div>
+                        <NavLink to='/messages' exact activeClassName='camp-active-nav'>
+                            <MessageOutlined fontSize='default' className='camp-navigation-icon' />
                         </NavLink>
                     </div>
                     <div>
                         <NavLink to={`/profile/${_id}`} exact activeClassName='camp-active-nav'>
-                            <AccountCircle fontSize='large' className='camp-navigation-icon' />
+                            <AccountCircle fontSize='default' className='camp-navigation-icon' />
                         </NavLink>
                     </div>
                     <div>
                         <NavLink to='/notifications' exact activeClassName='camp-active-nav'>
                             <NotificationsActiveOutlined
-                                fontSize='large'
+                                fontSize='default'
                                 className='camp-navigation-icon'
                             />
                         </NavLink>

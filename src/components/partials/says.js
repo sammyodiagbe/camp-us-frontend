@@ -2,11 +2,12 @@ import React from "react";
 import { FavoriteOutlined, ChatBubbleOutlineOutlined } from "@material-ui/icons";
 import { connect } from "react-redux";
 import { likeOrUnlike } from "../../redux/actions/post-comment";
+import likeSound from "../../assets/audio/get-outta-here.ogg";
 
 const Says = (props) => {
     const { says, likeOrUnlike } = props;
     const renderSays = says.map((say, index) => {
-        const { content, said_by, _id } = say;
+        const { content, said_by, _id, likes, comments } = say;
         const { firstname, lastname, nickname } = said_by;
         return (
             <div className='camp-a-say' key={index}>
@@ -27,10 +28,16 @@ const Says = (props) => {
                     <div className='camp-say-reaction'>
                         <button
                             onClick={() => {
-                                console.log("hello");
+                                let sound = new Audio(likeSound);
+                                sound
+                                    .play()
+                                    .then(() => {
+                                        console.log("done");
+                                    })
+                                    .catch((err) => console.log(err));
                                 likeOrUnlike(_id);
                             }}>
-                            2.8k{" "}
+                            {likes.length}
                             <FavoriteOutlined
                                 fontSize='small'
                                 color='secondary'
@@ -38,7 +45,8 @@ const Says = (props) => {
                             />
                         </button>
                         <button>
-                            15 <ChatBubbleOutlineOutlined fontSize='small' className='camp-react' />
+                            {comments.length}{" "}
+                            <ChatBubbleOutlineOutlined fontSize='small' className='camp-react' />
                         </button>
                     </div>
                 </div>

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { HashRouter as BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Signup from "./components/authentication/signup";
 import Login from "./components/authentication/login";
 import Profile from "./components/profile/profile";
 import Home from "./components/main/home";
 import "./styles/main/main.css";
+import Message from "./components/main/message";
 
 class App extends Component {
     constructor(props) {
@@ -30,6 +31,7 @@ class App extends Component {
                                 <Route exact path='/auth/signup' component={Signup} />
                                 <Route exact path='/auth/login' component={Login} />
                                 <Route exact path='/profile/:profile_id' component={Profile} />
+                                <Route exact path='/messages' component={Message} />
                             </Switch>
                         </div>
                     </BrowserRouter>
