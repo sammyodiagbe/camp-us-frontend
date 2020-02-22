@@ -14,7 +14,7 @@ class Home extends Component {
                 <div className='camp-main-content'>
                     <HeadBalloon isAuthUser={true} user={user} />
                     <Says says={[]} />
-                    <Link to={`/profile/${"5e466a65ad1938229f8a3498"}`}>Test</Link>
+                    <Link to={`/profile/${"5e4c67cdfdd6b20ea318d765"}`}>Test</Link>
                 </div>
             </React.Fragment>
         );

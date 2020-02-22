@@ -1,0 +1,111 @@
+div.camp-main-content {
+    padding: 0;
+
+    div.camp-active-chat-bubble {
+        height: calc(100vh - 60px);
+        width: 100%;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        div.camp-bubble-head {
+            height: 70px;
+            width: 100%;
+            box-shadow: 0 0 2px 0 rgba(0, 0, 0, 1);
+            display: flex;
+            align-items: center;
+            padding: 0 0.8em;
+            div.camp-bubble-head-user {
+                height: 50px;
+                width: 50px;
+                border-radius: 50px;
+                background: #ccc;
+                margin-right: 10px;
+            }
+
+            div.camp-bubble-head-user-details {
+                color: #444;
+                h4 {
+                    margin-bottom: 2px;
+                }
+            }
+        }
+        div.camp-bubble-body {
+            flex: 1;
+            background: #fff;
+            overflow-y: auto;
+            div.camp-chat-balloon {
+                padding: 1em;
+                display: flex;
+
+                &.camp-balloon-authuser,
+                &.camp-balloon-friend {
+                    div.camp-balloon {
+                        max-width: 70%;
+                        padding: 8px 1em;
+                        border-radius: 5px;
+                    }
+                }
+                &.camp-balloon-authuser {
+                    justify-content: flex-end;
+                    div.camp-balloon {
+                        background: #ccc;
+                        color: #444;
+                    }
+                }
+
+                &.camp-balloon-friend {
+                    justify-content: flex-start;
+                    div.camp-balloon {
+                        background: dodgerblue;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        div.camp-bubble-leg {
+            height: 60px;
+            width: 100%;
+            box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            padding: 0 0.3em;
+            form {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                height: 50px;
+                border-radius: 55px;
+                padding: 1em 0;
+                textarea {
+                    background: #efefef;
+                    flex: 1;
+                    overflow: hidden;
+                    height: 50px;
+                    padding: 1em 0.8em;
+                    border-top-left-radius: 50px;
+                    border-bottom-left-radius: 50px;
+                    border-right: 1px solid transparent;
+                    border: 1px solid rgb(177, 174, 194);
+                    outline: 0;
+                    resize: none;
+                    &::placeholder {
+                        color: #444;
+                    }
+                }
+
+                button {
+                    height: 50px;
+                    width: 80px;
+                    border: 1px solid rgb(177, 174, 194);
+                    background: dodgerblue;
+                    color: #fff;
+                    font-weight: bolder;
+                    border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                    border-left: 1px solid transparent;
+                }
+            }
+        }
+    }
+}

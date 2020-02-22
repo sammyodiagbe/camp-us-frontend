@@ -34,15 +34,22 @@ div.camp-main-content div.camp-balloon-head div.camp-relation-container {
 }
 
 div.camp-main-content div.camp-balloon-head div.camp-relation-container button.camp-relation {
+  margin-right: 5px;
   padding: 8px 10px;
   font-weight: bold;
   font-size: 0.7em;
+  border-radius: 5px;
 }
 
 div.camp-main-content div.camp-balloon-head div.camp-relation-container button.camp-relation.camp-relation-follow {
-  background: dodgerblue;
-  color: #fff;
-  border-radius: 12px;
+  border: 1px solid dodgerblue;
+  color: dodgerblue;
+  background: transparent;
+}
+
+div.camp-main-content div.camp-balloon-head div.camp-relation-container button.camp-relation.camp-relation-unfollow {
+  background: transparent;
+  border: 1px solid #777;
 }
 
 div.camp-main-content div.camp-balloon-head div.camp-head-top,
@@ -73,12 +80,12 @@ div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-deta
           flex: 1;
 }
 
-div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details h2,
+div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details h3,
 div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details p {
   color: #555;
 }
 
-div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details h2 {
+div.camp-main-content div.camp-balloon-head div.camp-head-top div.camp-user-details h3 {
   margin-bottom: 5px;
 }
 
@@ -91,12 +98,13 @@ div.camp-main-content div.camp-balloon-head div.camp-head-bottom form textarea {
   max-width: 100%;
   resize: none;
   border: none;
-  background: #bcbcbc;
-  padding: 1em;
+  padding: 2em;
   padding-left: 1em;
   font-size: 1em;
   border-radius: 5px;
   outline: none;
+  border: 1px solid #999;
+  overflow: hidden;
 }
 
 div.camp-main-content div.camp-balloon-head div.camp-head-bottom form textarea::-webkit-input-placeholder {
@@ -119,9 +127,12 @@ div.camp-main-content div.camp-balloon-head div.camp-head-bottom form button {
   padding: 1em 0.8em;
   display: block;
   width: 100%;
-  background: dodgerblue;
+  color: dodgerblue;
+  background: transparent;
+  border: 1px solid dodgerblue;
   font-weight: bold;
-  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 div.camp-main-content div.camp-render-says div.camp-a-say {

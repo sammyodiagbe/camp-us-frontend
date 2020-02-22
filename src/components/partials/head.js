@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { haveASay } from "../../redux/actions/post-comment";
 import { Link } from "react-router-dom";
 import { followUser, unfollowUser } from "../../redux/actions/profile";
+import { ChatBubbleOutlineRounded } from "@material-ui/icons";
 
 class HeadBalloon extends Component {
     constructor(props) {
@@ -40,13 +41,13 @@ class HeadBalloon extends Component {
         const { postText } = this.state;
         const { page, isAuthUser, user, relationship } = this.props;
         const { isMutual, isFollowing } = relationship ? relationship : {};
-        const { firstname, lastname, nickname } = user;
+        const { firstname, lastname, nickname, _id } = user;
         const renderActions =
             page === "profile" && !isAuthUser ? (
                 <div className='camp-relation-container'>
-                    {isFollowing ? (
+                    {isFollowing || isMutual ? (
                         <button
-                            className='camp-relation camp-realation-unfollow'
+                            className='camp-relation camp-relation-unfollow'
                             onClick={this.unfollowUser}>
                             Unfollow
                         </button>
@@ -57,7 +58,11 @@ class HeadBalloon extends Component {
                             Follow
                         </button>
                     )}
-                    {isMutual && <Link to='/message'>Message</Link>}
+                    {isMutual && (
+                        <Link to={`/chat/${_id}`}>
+                            <ChatBubbleOutlineRounded color={"action"} />
+                        </Link>
+                    )}
                 </div>
             ) : (
                 <React.Fragment></React.Fragment>
@@ -67,7 +72,7 @@ class HeadBalloon extends Component {
                 <div className='camp-head-top'>
                     <div className='camp-user-avatar'></div>
                     <div className='camp-user-details'>
-                        <h2>{`${firstname} ${lastname}`}</h2>
+                        <h3>{`${firstname} ${lastname}`}</h3>
                         <p>{`@${nickname}`}</p>
                     </div>
                 </div>

@@ -1,0 +1,161 @@
+div.camp-main-content {
+  padding: 0;
+}
+
+div.camp-main-content div.camp-active-chat-bubble {
+  height: calc(100vh - 60px);
+  width: 100%;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-head {
+  height: 70px;
+  width: 100%;
+  -webkit-box-shadow: 0 0 2px 0 black;
+          box-shadow: 0 0 2px 0 black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 0.8em;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-head div.camp-bubble-head-user {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  background: #ccc;
+  margin-right: 10px;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-head div.camp-bubble-head-user-details {
+  color: #444;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-head div.camp-bubble-head-user-details h4 {
+  margin-bottom: 2px;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: #fff;
+  overflow-y: auto;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body div.camp-chat-balloon {
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body div.camp-chat-balloon.camp-balloon-authuser div.camp-balloon, div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body div.camp-chat-balloon.camp-balloon-friend div.camp-balloon {
+  max-width: 70%;
+  padding: 8px 1em;
+  border-radius: 5px;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body div.camp-chat-balloon.camp-balloon-authuser {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body div.camp-chat-balloon.camp-balloon-authuser div.camp-balloon {
+  background: #ccc;
+  color: #444;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body div.camp-chat-balloon.camp-balloon-friend {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-body div.camp-chat-balloon.camp-balloon-friend div.camp-balloon {
+  background: dodgerblue;
+  color: #fff;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg {
+  height: 60px;
+  width: 100%;
+  -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 0.3em;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  border-radius: 55px;
+  padding: 1em 0;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg form textarea {
+  background: #efefef;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  overflow: hidden;
+  height: 50px;
+  padding: 1em 0.8em;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-right: 1px solid transparent;
+  border: 1px solid #b1aec2;
+  outline: 0;
+  resize: none;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg form textarea::-webkit-input-placeholder {
+  color: #444;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg form textarea:-ms-input-placeholder {
+  color: #444;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg form textarea::-ms-input-placeholder {
+  color: #444;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg form textarea::placeholder {
+  color: #444;
+}
+
+div.camp-main-content div.camp-active-chat-bubble div.camp-bubble-leg form button {
+  height: 50px;
+  width: 80px;
+  border: 1px solid #b1aec2;
+  background: dodgerblue;
+  color: #fff;
+  font-weight: bolder;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-left: 1px solid transparent;
+}
+/*# sourceMappingURL=chat.css.map */

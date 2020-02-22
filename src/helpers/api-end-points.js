@@ -24,3 +24,7 @@ export const UNFOLLOW = `${baseUrl}/connections/unfollow`;
 
 // getting users conversations
 export const GET_CONVERSATIONS = `${baseUrl}/messaging/get-all-conversations`;
+export const GET_ACTIVE_CONVERSATION = `${baseUrl}/messaging/get-active-conversation`;
+
+// sending message
+export const SEND_MESSAGE = `${baseUrl}/messaging/new-message`;

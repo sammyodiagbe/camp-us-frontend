@@ -7,6 +7,7 @@ import Profile from "./components/profile/profile";
 import Home from "./components/main/home";
 import "./styles/main/main.css";
 import Message from "./components/main/message";
+import Chat from "./components/main/chat";
 
 class App extends Component {
     constructor(props) {
@@ -16,9 +17,12 @@ class App extends Component {
             user: null
         };
     }
+    componentDidMount() {
+        console.log(this.props);
+    }
 
     render() {
-        const { isverifyingauth } = this.props;
+        const { isverifyingauth, Socket } = this.props;
         return (
             <React.Fragment>
                 {isverifyingauth ? (
@@ -27,11 +31,28 @@ class App extends Component {
                     <BrowserRouter>
                         <div className='App'>
                             <Switch>
-                                <Route exact path='/' component={Home} />
+                                <Route
+                                    exact
+                                    path='/'
+                                    render={(props) => <Home {...props} Socket={Socket} />}
+                                />
                                 <Route exact path='/auth/signup' component={Signup} />
                                 <Route exact path='/auth/login' component={Login} />
-                                <Route exact path='/profile/:profile_id' component={Profile} />
-                                <Route exact path='/messages' component={Message} />
+                                <Route
+                                    exact
+                                    path='/profile/:profile_id'
+                                    render={(props) => <Profile {...props} Socket={Socket} />}
+                                />
+                                <Route
+                                    exact
+                                    path='/messages'
+                                    render={(props) => <Message {...props} Socket={Socket} />}
+                                />
+                                <Route
+                                    exact
+                                    path='/chat/:friendid'
+                                    render={(props) => <Chat {...props} Socket={Socket} />}
+                                />
                             </Switch>
                         </div>
                     </BrowserRouter>

@@ -68,10 +68,10 @@ export const followUser = (id) => {
         const follow = axios.post(FOLLOW, { whomToFollow: id }, { withCredentials: true });
         follow
             .then((response) => {
-                console.log(response.data);
+                console.log("data ", response.data);
                 dispatch(checkRelationship(id));
             })
-            .then((err) => console.log(err));
+            .catch((err) => console.log(err));
     };
 };
 
