@@ -10,6 +10,7 @@ export const GET_USER_PROFILE = `${baseUrl}/profile`;
 
 // check relationship between auth user id and the current profile user
 export const CHECK_RELATIONSHIP = `${baseUrl}/profile/check-connection`;
+export const LOAD_FEEDS = `${baseUrl}/profile/feeds/get-feeds`;
 
 // says
 export const GET_USER_SAYS = `${baseUrl}/says`;

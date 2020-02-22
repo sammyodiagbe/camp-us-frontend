@@ -4,8 +4,12 @@ import HeadBalloon from "../partials/head";
 import Says from "../partials/says";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { loadFeeds } from "../../redux/actions/post-comment";
 
 class Home extends Component {
+    componentDidMount() {
+        this.props.loadFeeds();
+    }
     render() {
         const { user } = this.props;
         return (
@@ -27,4 +31,12 @@ const mapStateToProps = (state) => {
         user: authentication.user
     };
 };
-export default connect(mapStateToProps, null)(Home);
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadFeeds: () => {
+            return dispatch(loadFeeds());
+        }
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

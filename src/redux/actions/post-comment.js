@@ -1,5 +1,5 @@
 import axios from "axios";
-import { HAVE_SAY, COMMENT, LIKE_UNLIKE } from "../../helpers/api-end-points";
+import { HAVE_SAY, COMMENT, LIKE_UNLIKE, LOAD_FEEDS } from "../../helpers/api-end-points";
 import donePosting from "../../assets/audio/insight.ogg";
 
 export const haveASay = (content) => {
@@ -40,6 +40,17 @@ export const likeOrUnlike = (postid) => {
         likeorunlike
             .then((response) => {
                 console.log(response.data);
+            })
+            .catch((err) => console.log(err));
+    };
+};
+
+export const loadFeeds = () => {
+    return (dispatch) => {
+        let gettingfeeds = axios.get(LOAD_FEEDS, { withCredentials: true });
+        gettingfeeds
+            .then((response) => {
+                console.log(response);
             })
             .catch((err) => console.log(err));
     };
