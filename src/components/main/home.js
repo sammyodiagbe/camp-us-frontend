@@ -8,6 +8,7 @@ import { loadFeeds } from "../../redux/actions/post-comment";
 
 class Home extends Component {
     componentDidMount() {
+        console.log("loading feeds");
         this.props.loadFeeds();
     }
     render() {
@@ -17,8 +18,7 @@ class Home extends Component {
                 <NavigationBar />
                 <div className='camp-main-content'>
                     <HeadBalloon isAuthUser={true} user={user} />
-                    <Says says={[]} />
-                    <Link to={`/profile/${"5e4c67cdfdd6b20ea318d765"}`}>Test</Link>
+                    <Says says={this.props.newsfeeds.reverse()} />
                 </div>
             </React.Fragment>
         );
@@ -26,9 +26,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { authentication } = state;
+    const { authentication, conversation } = state;
     return {
-        user: authentication.user
+        user: authentication.user,
+        newsfeeds: conversation.newsfeeds
     };
 };
 

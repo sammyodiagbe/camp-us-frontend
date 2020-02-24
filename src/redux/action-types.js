@@ -22,3 +22,6 @@ export const SET_RELATIONSHIP = "SET_RELATIONSHIP";
 // messages and conversations
 export const SET_CONVERSATIONS = "GET_CONVERSATIONS";
 export const SET_ACTIVE_CONVERSATION = "GET_ACTIVE_CONVERSATION";
+
+// news feeds
+export const SET_FEEDS = "SET_FEEDS";

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { HAVE_SAY, COMMENT, LIKE_UNLIKE, LOAD_FEEDS } from "../../helpers/api-end-points";
 import donePosting from "../../assets/audio/insight.ogg";
+import { SET_FEEDS } from "../action-types";
 
 export const haveASay = (content) => {
     return (dispatch) => {
@@ -45,12 +46,22 @@ export const likeOrUnlike = (postid) => {
     };
 };
 
+export const setFeeds = (feeds) => {
+    return {
+        type: SET_FEEDS,
+        payload: feeds
+    };
+};
+
 export const loadFeeds = () => {
     return (dispatch) => {
         let gettingfeeds = axios.get(LOAD_FEEDS, { withCredentials: true });
         gettingfeeds
             .then((response) => {
-                console.log(response);
+                const { data } = response;
+                const { feeds } = data;
+                console.log(feeds);
+                dispatch(setFeeds(feeds));
             })
             .catch((err) => console.log(err));
     };

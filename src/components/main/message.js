@@ -4,10 +4,13 @@ import NavigationBar from "../partials/navigation";
 import { connect } from "react-redux";
 import { getConversations } from "../../redux/actions/conversations";
 
-const Message = ({ messages, getConversations }) => {
-    useEffect(() => {
-        getConversations();
-    });
+const Message = ({ messages, getConversations, conversations = [] }) => {
+    // getConversations();
+
+    // const renderConversations = conversations.map((conversation) => {
+    //     const { user1, user2, messages } = conversation;
+    //     return null;
+    // });
     return (
         <React.Fragment>
             <NavigationBar />
@@ -19,7 +22,10 @@ const Message = ({ messages, getConversations }) => {
 };
 
 const mapStateToProps = (state) => {
-    return {};
+    const { conversation } = state;
+    return {
+        conversations: conversation.conversations
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

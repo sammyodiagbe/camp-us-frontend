@@ -13,6 +13,7 @@ export const getConversations = () => {
         let getconversation = axios.get(GET_CONVERSATIONS, { withCredentials: true });
         getconversation
             .then((response) => {
+                console.log(response.data);
                 return dispatch(setConversations(response.data));
             })
             .catch((err) => console.log(err));
