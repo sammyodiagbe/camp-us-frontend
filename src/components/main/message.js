@@ -1,30 +1,42 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
 import "../../styles/main/main.css";
 import NavigationBar from "../partials/navigation";
 import { connect } from "react-redux";
 import { getConversations } from "../../redux/actions/conversations";
+import Conversation from "../partials/conversation";
+import "../../styles/conversation/conversation.css";
 
-const Message = ({ messages, getConversations, conversations = [] }) => {
-    // getConversations();
+class Messages extends Component {
+    constructor(props) {
+        super(props);
 
-    // const renderConversations = conversations.map((conversation) => {
-    //     const { user1, user2, messages } = conversation;
-    //     return null;
-    // });
-    return (
-        <React.Fragment>
-            <NavigationBar />
-            <div className='camp-main-content'>
-                <p>Getting users conversation</p>
-            </div>
-        </React.Fragment>
-    );
-};
+        this.state = {};
+    }
+
+    componentDidMount() {
+        this.props.getConversations();
+    }
+
+    render() {
+        const { conversations, authuser } = this.props;
+
+        return (
+            <React.Fragment>
+                <NavigationBar />
+                <div className='camp-main-content'>
+                    <Conversation conversations={conversations} authuser={authuser} />
+                </div>
+            </React.Fragment>
+        );
+    }
+}
 
 const mapStateToProps = (state) => {
-    const { conversation } = state;
+    const { conversation, authentication } = state;
+
     return {
-        conversations: conversation.conversations
+        conversations: conversation.conversations,
+        authuser: authentication.user
     };
 };
 
@@ -36,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Message);
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

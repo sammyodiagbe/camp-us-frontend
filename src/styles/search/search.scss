@@ -1,0 +1,14 @@
+div.camp-search-container {
+    height: 60px;
+    padding-left: 10px;
+    background: #fff;
+    form {
+        height: 60px;
+        width: 100%;
+        display: flex;
+        input {
+            flex: 1;
+            outline: none;
+        }
+    }
+}

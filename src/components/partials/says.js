@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 const Says = (props) => {
     const { says, likeOrUnlike } = props;
-    console.log(props);
     const renderSays = says ? (
         says.map((say, index) => {
             const { content, said_by, _id, likes, comments } = say;

@@ -29,3 +29,6 @@ export const GET_ACTIVE_CONVERSATION = `${baseUrl}/messaging/get-active-conversa
 
 // sending message
 export const SEND_MESSAGE = `${baseUrl}/messaging/new-message`;
+
+// searching for a user
+export const FIND_SOMEONE = `${baseUrl}/people/search`;

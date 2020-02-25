@@ -1,0 +1,21 @@
+div.camp-search-container {
+  height: 60px;
+  padding-left: 10px;
+  background: #fff;
+}
+
+div.camp-search-container form {
+  height: 60px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+div.camp-search-container form input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  outline: none;
+}
+/*# sourceMappingURL=search.css.map */

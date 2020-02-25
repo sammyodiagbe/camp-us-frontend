@@ -60,7 +60,6 @@ export const loadFeeds = () => {
             .then((response) => {
                 const { data } = response;
                 const { feeds } = data;
-                console.log(feeds);
                 dispatch(setFeeds(feeds));
             })
             .catch((err) => console.log(err));

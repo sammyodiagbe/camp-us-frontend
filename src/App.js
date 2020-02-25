@@ -8,6 +8,7 @@ import Home from "./components/main/home";
 import "./styles/main/main.css";
 import Message from "./components/main/message";
 import Chat from "./components/main/chat";
+import Search from "./components/main/search";
 
 class App extends Component {
     constructor(props) {
@@ -52,6 +53,12 @@ class App extends Component {
                                     exact
                                     path='/chat/:friendid'
                                     render={(props) => <Chat {...props} Socket={Socket} />}
+                                />
+
+                                <Route
+                                    exact
+                                    path='/search'
+                                    render={(props) => <Search {...props} Socket={Socket} />}
                                 />
                             </Switch>
                         </div>
