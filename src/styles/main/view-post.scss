@@ -1,0 +1,62 @@
+div.camp-a-say {
+    background: #fff;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 1em;
+    div.camp-say-top {
+        display: flex;
+        padding: 0.7em;
+        div.camp-say-talker {
+            height: 60px;
+            width: 60px;
+            background: #bcbcbc;
+            border-radius: 50%;
+        }
+
+        div.camp-say-talker-details {
+            padding-top: 0.7em;
+            padding-left: 0.7em;
+            flex: 1;
+        }
+
+        div.camp-say-time {
+            padding-top: 0.7em;
+            p {
+                font-size: 0.9em;
+            }
+        }
+    }
+
+    div.camp-say-bottom {
+        padding-top: 0.5em;
+        div.camp-say-say {
+            padding: 0 0.7em;
+            padding-bottom: 1em;
+        }
+
+        div.camp-say-reaction {
+            display: flex;
+            padding: 0.3em 0;
+            a {
+                color: #222;
+            }
+            button,
+            a {
+                padding: 0.7em 0;
+                flex: 1;
+                background: transparent;
+                font-weight: bold;
+                outline: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .camp-react {
+                    margin-left: 5px;
+                }
+                &:nth-child(1) {
+                    border-right: 1px solid rgba(0, 0, 0, 0.1);
+                }
+            }
+        }
+    }
+}

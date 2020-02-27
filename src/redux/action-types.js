@@ -25,3 +25,14 @@ export const SET_ACTIVE_CONVERSATION = "GET_ACTIVE_CONVERSATION";
 
 // news feeds
 export const SET_FEEDS = "SET_FEEDS";
+
+// setting search result
+export const SET_SEARCH_RESULT = "SET_SEARCH_RESULT";
+
+// notifications
+export const GET_USER_NOTIFICATIONS = "GET_USER_NOTIFICATIONS";
+export const SET_USER_NOTIFICATIONS = "SET_USER_NOTIFICATIONS";
+
+// get viewed post data
+export const SET_VIEWED_POST = "SET_VIEWED_POST";
+export const IS_GETTING_SAY = "IS_GETTING_SAY";

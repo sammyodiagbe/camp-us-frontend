@@ -146,7 +146,11 @@ div.camp-main-content {
                 div.camp-say-reaction {
                     display: flex;
                     padding: 0.3em 0;
-                    button {
+                    a {
+                        color: #222;
+                    }
+                    button,
+                    a {
                         padding: 0.7em 0;
                         flex: 1;
                         background: transparent;

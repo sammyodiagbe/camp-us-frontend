@@ -1,8 +1,32 @@
 import axios from "axios";
-import { HAVE_SAY, COMMENT, LIKE_UNLIKE, LOAD_FEEDS } from "../../helpers/api-end-points";
+import {
+    HAVE_SAY,
+    COMMENT,
+    LIKE_UNLIKE,
+    LOAD_FEEDS,
+    GET_POST_DATA
+} from "../../helpers/api-end-points";
 import donePosting from "../../assets/audio/insight.ogg";
-import { SET_FEEDS } from "../action-types";
+import { SET_FEEDS, SET_VIEWED_POST } from "../action-types";
+import { isGettingPost } from "./app-interaction";
 
+export const setViewedPost = (data) => {
+    return {
+        type: SET_VIEWED_POST,
+        payload: data
+    };
+};
+export const getViewedPostData = (postid) => {
+    return (dispatch) => {
+        dispatch(isGettingPost(true));
+        let post = axios.get(`${GET_POST_DATA}/${postid}`, { withCredentials: true });
+        post.then((response) => {
+            const { say } = response.data;
+            dispatch(isGettingPost(false));
+            dispatch(setViewedPost(say));
+        }).catch((err) => console.log(err));
+    };
+};
 export const haveASay = (content) => {
     return (dispatch) => {
         let makeSay = axios.post(HAVE_SAY, { content }, { withCredentials: true });
@@ -12,7 +36,7 @@ export const haveASay = (content) => {
                 audio
                     .play()
                     .then(() => {
-                        console.log("done Posting");
+                        audio.remove();
                     })
                     .catch((err) => console.log(err));
             })
@@ -26,9 +50,7 @@ export const addComment = (comment, postid) => {
     return (dispatch) => {
         let addcomment = axios.post(COMMENT, { comment, postid }, { withCredentials: true });
         addcomment
-            .then((response) => {
-                console.log(response.data);
-            })
+            .then((response) => {})
             .catch((err) => {
                 console.log(err);
             });

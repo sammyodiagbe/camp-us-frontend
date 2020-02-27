@@ -41,7 +41,7 @@ class HeadBalloon extends Component {
         const { postText } = this.state;
         const { page, isAuthUser, user, relationship } = this.props;
         const { isMutual, isFollowing } = relationship ? relationship : {};
-        const { firstname, lastname, nickname, _id } = user;
+        const { name, nickname, _id } = user;
         const renderActions =
             page === "profile" && !isAuthUser ? (
                 <div className='camp-relation-container'>
@@ -72,7 +72,7 @@ class HeadBalloon extends Component {
                 <div className='camp-head-top'>
                     <div className='camp-user-avatar'></div>
                     <div className='camp-user-details'>
-                        <h3>{`${firstname} ${lastname}`}</h3>
+                        <h3>{`${name}`}</h3>
                         <p>{`@${nickname}`}</p>
                     </div>
                 </div>

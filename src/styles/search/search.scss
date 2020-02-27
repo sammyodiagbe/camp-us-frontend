@@ -1,14 +1,35 @@
 div.camp-search-container {
     height: 60px;
-    padding-left: 10px;
     background: #fff;
     form {
         height: 60px;
         width: 100%;
         display: flex;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        border-top: 1px solid rgba(0, 0, 0, 0.4);
         input {
             flex: 1;
+            padding-left: 1em;
             outline: none;
+            font-size: 1em;
+        }
+    }
+}
+
+div.camp-search-results {
+    p.camp-a-search {
+        padding: 1em 0.8em;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 10px;
+        a {
+            color: #222;
+            font-size: 0.9em;
+            font-weight: bolder;
+        }
+
+        p {
+            font-size: 0.8em;
+            color: #444;
         }
     }
 }

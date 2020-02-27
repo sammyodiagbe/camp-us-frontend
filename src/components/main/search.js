@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import HeaderNav from "../partials/navigation";
 import { connect } from "react-redux";
 import { findUser } from "../../redux/actions/search";
+import Searches from "../partials/search";
 
 class Search extends Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class Search extends Component {
 
     render() {
         const { searchquery } = this.state;
+        const { searchedusers, authuser } = this.props;
         return (
             <React.Fragment>
                 <HeaderNav />
@@ -45,6 +47,7 @@ class Search extends Component {
                             />
                         </form>
                     </div>
+                    <Searches authuser={authuser} searchedusers={searchedusers} />
                 </div>
             </React.Fragment>
         );
@@ -52,7 +55,11 @@ class Search extends Component {
 }
 
 const mapStateTProps = (state) => {
-    return {};
+    const { searches, authentication } = state;
+    return {
+        searchedusers: searches.searchedusers,
+        authuser: authentication.user
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

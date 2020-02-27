@@ -3,7 +3,8 @@ import {
     IS_CREATING_ACCOUNT,
     IS_GETTING_PROFILE_DETAILS,
     IS_GETTING_SAYS,
-    IS_VERIFYING_AUTHENTICATION
+    IS_VERIFYING_AUTHENTICATION,
+    IS_GETTING_SAY
 } from "../action-types";
 
 export const isVerifyingUserAuthentication = (verify) => {
@@ -36,6 +37,13 @@ export const isGettingUserProfileDetails = (getting) => {
 export const isGettingUserSays = (isgetting) => {
     return {
         type: IS_GETTING_SAYS,
+        payload: isgetting
+    };
+};
+
+export const isGettingPost = (isgetting) => {
+    return {
+        type: IS_GETTING_SAY,
         payload: isgetting
     };
 };

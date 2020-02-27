@@ -10,8 +10,7 @@ class Signup extends Component {
 
         this.state = {
             input: {
-                firstname: "",
-                lastname: "",
+                name: "",
                 email: "",
                 nickname: "",
                 password: "",
@@ -53,33 +52,20 @@ class Signup extends Component {
 
     render() {
         const { input } = this.state;
-        const { firstname, lastname, email, password, cpassword, nickname } = input;
+        const { name, email, password, cpassword, nickname } = input;
         return (
             <div className='camp-auth-container'>
                 <h1 className='camp-auth-title'>Create Account</h1>
                 <form onSubmit={this.createUserAccount} noValidate>
                     <div>
-                        <label htmlFor='firstname'>
-                            Firstname
+                        <label htmlFor='name'>
+                            Full Name
                             <input
                                 type='text'
-                                id='firstname'
-                                placeholder='Firstname'
+                                id='name'
+                                placeholder='James Allen'
                                 onChange={this.handleInputChange}
-                                value={firstname}
-                            />
-                        </label>
-                    </div>
-
-                    <div>
-                        <label htmlFor='lastname'>
-                            Lastname
-                            <input
-                                type='text'
-                                id='lastname'
-                                placeholder='Latname'
-                                onChange={this.handleInputChange}
-                                value={lastname}
+                                value={name}
                             />
                         </label>
                     </div>

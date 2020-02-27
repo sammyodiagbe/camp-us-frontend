@@ -9,6 +9,8 @@ import "./styles/main/main.css";
 import Message from "./components/main/message";
 import Chat from "./components/main/chat";
 import Search from "./components/main/search";
+import Notification from "./components/main/notification";
+import ViewPost from "./components/main/view-post";
 
 class App extends Component {
     constructor(props) {
@@ -17,9 +19,6 @@ class App extends Component {
         this.state = {
             user: null
         };
-    }
-    componentDidMount() {
-        console.log(this.props);
     }
 
     render() {
@@ -59,6 +58,16 @@ class App extends Component {
                                     exact
                                     path='/search'
                                     render={(props) => <Search {...props} Socket={Socket} />}
+                                />
+                                <Route
+                                    exact
+                                    path='/notifications'
+                                    render={(props) => <Notification {...props} Socket={Socket} />}
+                                />
+                                <Route
+                                    exact
+                                    path='/view-post/:postid'
+                                    render={(props) => <ViewPost {...props} Socket={Socket} />}
                                 />
                             </Switch>
                         </div>

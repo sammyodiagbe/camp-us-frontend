@@ -1,9 +1,15 @@
-import { SET_CONVERSATIONS, SET_ACTIVE_CONVERSATION, SET_FEEDS } from "../action-types";
+import {
+    SET_CONVERSATIONS,
+    SET_ACTIVE_CONVERSATION,
+    SET_FEEDS,
+    SET_VIEWED_POST
+} from "../action-types";
 
 const initialState = {
     conversations: [],
     activeBubble: {},
-    newsfeeds: []
+    newsfeeds: [],
+    viewedPost: {}
 };
 
 const conversationReducer = (state = initialState, action) => {
@@ -17,7 +23,11 @@ const conversationReducer = (state = initialState, action) => {
             break;
 
         case SET_FEEDS:
-            state = { ...state, newsfeeds: [...state.newsfeeds, ...payload] };
+            state = { ...state, newsfeeds: payload };
+            break;
+
+        case SET_VIEWED_POST:
+            state = { ...state, viewedPost: payload };
             break;
         default:
             break;

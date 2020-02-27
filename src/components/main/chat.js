@@ -4,6 +4,7 @@ import "../../styles/chat/chat.css";
 import { SendOutlined } from "@material-ui/icons";
 import { fetchConversation, sendMessage } from "../../redux/actions/chats";
 import { connect } from "react-redux";
+import io from "socket.io-client";
 
 class Chat extends Component {
     constructor(props) {
@@ -11,12 +12,16 @@ class Chat extends Component {
 
         this.state = {
             chatfriendid: "",
-            body: ""
+            body: "",
+            chat_nsp: null,
+            typing: false
         };
     }
 
     componentDidMount() {
         const { friendid } = this.props.match.params;
+        const { authuser } = this.props;
+        const { _id } = authuser;
         this.setState(
             {
                 chatfriendid: friendid
@@ -27,10 +32,43 @@ class Chat extends Component {
                 this.props.fetchConversation(chatfriendid);
             }
         );
+        const chat_nsp = io.connect("http://localhost:5000/chat");
+        chat_nsp.on("connect", () => {
+            this.setState({
+                chat_nsp
+            });
+            chat_nsp.emit("user_connected", { user: _id });
+            chat_nsp.on("typing", () => {
+                this.setState({
+                    typing: true
+                });
+            });
+
+            chat_nsp.on("done_typing", () => {
+                console.log("done typing");
+                this.setState({
+                    typing: false
+                });
+            });
+
+            chat_nsp.on("new_message", (data) => {
+                console.log(data);
+            });
+        });
+
+        this.refs.chatBodyRef.scrollTop = this.refs.chatBodyRef.scrollHeight;
     }
 
     handleInputChange = (e) => {
         const { value } = e.target;
+        const { chat_nsp, chatfriendid } = this.state;
+        if (value !== "" && value.length > 0) {
+            console.log("contains something");
+            chat_nsp.emit("typing", { friend: chatfriendid });
+        } else {
+            console.log("does not contain anything");
+            chat_nsp.emit("done_typing", { friend: chatfriendid });
+        }
         this.setState({
             body: value
         });
@@ -38,13 +76,24 @@ class Chat extends Component {
 
     sendMessage = (e) => {
         e.preventDefault();
-        const { body, chatfriendid } = this.state;
+        const { body, chatfriendid, chat_nsp } = this.state;
         if (body === "" || body.trimLeft() === "" || body.trimRight() === "") return;
-        this.props.sendMessage({ body, friendid: chatfriendid });
+        const data = { body, friendid: chatfriendid };
+        const newmessage = { ...data, time: Date.now() };
+        chat_nsp.emit("new_message", newmessage);
+        this.setState(
+            {
+                body: ""
+            },
+            () => {
+                this.chatBodyRef.scrollTop = this.chatBodyRef.scrollHeight;
+            }
+        );
+        this.props.sendMessage(data);
     };
 
     render() {
-        const { body } = this.state;
+        const { body, typing } = this.state;
         const { authuser } = this.props;
         const { _id } = authuser;
         const chatm = this.props.chatConversation.conversation ? (
@@ -74,10 +123,18 @@ class Chat extends Component {
                             <div className='camp-bubble-head-user'></div>
                             <div className='camp-bubble-head-user-details'>
                                 <h4>Sammy daemon</h4>
-                                <p>@sammy</p>
+                                {typing ? (
+                                    <p style={{ color: "green" }}>typing...</p>
+                                ) : (
+                                    <p>@sammy</p>
+                                )}
                             </div>
                         </div>
-                        <div className='camp-bubble-body'>{chatm}</div>
+                        <div
+                            className='camp-bubble-body'
+                            ref={(ref) => (this.refs.chatBodyRef = ref)}>
+                            {chatm}
+                        </div>
                         <div className='camp-bubble-leg'>
                             <form noValidate onSubmit={this.sendMessage}>
                                 <textarea

@@ -3,12 +3,10 @@ import NavigationBar from "../partials/navigation";
 import HeadBalloon from "../partials/head";
 import Says from "../partials/says";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { loadFeeds } from "../../redux/actions/post-comment";
 
 class Home extends Component {
     componentDidMount() {
-        console.log("loading feeds");
         this.props.loadFeeds();
     }
     render() {

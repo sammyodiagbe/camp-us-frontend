@@ -188,7 +188,12 @@ div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom di
   padding: 0.3em 0;
 }
 
-div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button {
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction a {
+  color: #222;
+}
+
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button,
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction a {
   padding: 0.7em 0;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -207,11 +212,13 @@ div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom di
           justify-content: center;
 }
 
-div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button .camp-react {
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button .camp-react,
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction a .camp-react {
   margin-left: 5px;
 }
 
-div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button:nth-child(1) {
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction button:nth-child(1),
+div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction a:nth-child(1) {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 /*# sourceMappingURL=main.css.map */

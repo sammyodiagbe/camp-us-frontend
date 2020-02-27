@@ -1,19 +1,11 @@
 export default function(fields) {
     let errors = {};
     const validationSchema = {
-        firstname: {
-            message: "Firstname is required",
+        name: {
+            message: "Name is required",
             isValid: function(value) {
                 if (value.trim() === "") return false;
-                let regex = new RegExp("^[a-zA-Z]{3,50}$");
-                return regex.test(value);
-            }
-        },
-        lastname: {
-            message: "Lastname is required",
-            isValid: function(value) {
-                if (value.trim() === "") return false;
-                let regex = new RegExp("^[a-zA-Z]{3,50}$");
+                let regex = new RegExp("^(?=.[a-zA-Z])");
                 return regex.test(value);
             }
         },

@@ -32,3 +32,9 @@ export const SEND_MESSAGE = `${baseUrl}/messaging/new-message`;
 
 // searching for a user
 export const FIND_SOMEONE = `${baseUrl}/people/search`;
+
+// notification
+export const GET_USER_NOTIFICATIONS = `${baseUrl}/notifications/get-notifications`;
+
+// viewed post
+export const GET_POST_DATA = `${baseUrl}/interaction/getpost`;
