@@ -6,9 +6,9 @@ const Search = ({ searchedusers, authuser }) => {
     const renderSearchedUsers = searchedusers.map((user, index) => {
         const { _id, name, nickname } = user;
         return authuserid === _id ? null : (
-            <p className='camp-a-search'>
+            <p className='camp-a-search' key={index}>
                 <Link to={`/profile/${_id}`}>{`${name}`}</Link>
-                <p>@{nickname}</p>
+                <span>@{nickname}</span>
             </p>
         );
     });

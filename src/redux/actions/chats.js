@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GET_ACTIVE_CONVERSATION, SEND_MESSAGE } from "../../helpers/api-end-points";
-import { SET_ACTIVE_CONVERSATION } from "../action-types";
+import { SET_ACTIVE_CONVERSATION, APPEND_MESSAGE } from "../action-types";
 
 export const setChatBubble = (data) => {
     return {
@@ -9,9 +9,9 @@ export const setChatBubble = (data) => {
     };
 };
 
-export const fetchConversation = (id) => {
+export const fetchConversation = (friendid) => {
     return (dispatch) => {
-        const getConversation = axios.get(`${GET_ACTIVE_CONVERSATION}/${id}`, {
+        const getConversation = axios.get(`${GET_ACTIVE_CONVERSATION}/${friendid}`, {
             withCredentials: true
         });
         getConversation
@@ -30,5 +30,12 @@ export const sendMessage = (data) => {
                 console.log(response.data);
             })
             .catch((err) => console.log(err));
+    };
+};
+
+export const appendMessage = (data) => {
+    return {
+        type: APPEND_MESSAGE,
+        payload: data
     };
 };

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavigationBar from "../partials/navigation";
 import "../../styles/chat/chat.css";
 import { SendOutlined } from "@material-ui/icons";
-import { fetchConversation, sendMessage } from "../../redux/actions/chats";
+import { fetchConversation, sendMessage, appendMessage } from "../../redux/actions/chats";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 
@@ -11,25 +11,25 @@ class Chat extends Component {
         super(props);
 
         this.state = {
-            chatfriendid: "",
             body: "",
             chat_nsp: null,
-            typing: false
+            typing: false,
+            friend: {},
+            friendid: ""
         };
     }
 
     componentDidMount() {
         const { friendid } = this.props.match.params;
-        const { authuser } = this.props;
-        const { _id } = authuser;
+        const { _id } = this.props.authuser;
+        const { friend } = this.state;
         this.setState(
             {
-                chatfriendid: friendid
+                friendid
             },
             () => {
                 // get the conversation for this user
-                const { chatfriendid } = this.state;
-                this.props.fetchConversation(chatfriendid);
+                this.props.fetchConversation(friendid);
             }
         );
         const chat_nsp = io.connect("http://localhost:5000/chat");
@@ -52,22 +52,41 @@ class Chat extends Component {
             });
 
             chat_nsp.on("new_message", (data) => {
-                console.log(data);
+                const { friend } = this.state;
+                this.props.appendMessage({ ...data, sender: friend._id });
             });
-        });
 
-        this.refs.chatBodyRef.scrollTop = this.refs.chatBodyRef.scrollHeight;
+            // chat_nsp.on('disconnect', () => {
+            //     chat_nsp.d
+            // })
+        });
+    }
+
+    componentDidUpdate() {
+        this.chatBodyRef.scrollTop = this.chatBodyRef.scrollHeight;
+    }
+
+    static getDerivedStateFromProps(nextProps, state) {
+        const { chatConversation, authuser } = nextProps;
+        if (typeof chatConversation.conversation !== "undefined") {
+            const { conversation } = chatConversation;
+            const { user1, user2 } = conversation;
+
+            return {
+                friend: authuser._id === user1._id ? user2 : user1
+            };
+        } else {
+            return {};
+        }
     }
 
     handleInputChange = (e) => {
         const { value } = e.target;
-        const { chat_nsp, chatfriendid } = this.state;
+        const { chat_nsp, friend } = this.state;
         if (value !== "" && value.length > 0) {
-            console.log("contains something");
-            chat_nsp.emit("typing", { friend: chatfriendid });
+            chat_nsp.emit("typing", { friend: friend._id });
         } else {
-            console.log("does not contain anything");
-            chat_nsp.emit("done_typing", { friend: chatfriendid });
+            chat_nsp.emit("done_typing", { friend: friend._id });
         }
         this.setState({
             body: value
@@ -76,27 +95,40 @@ class Chat extends Component {
 
     sendMessage = (e) => {
         e.preventDefault();
-        const { body, chatfriendid, chat_nsp } = this.state;
+        const { body, friend, chat_nsp } = this.state;
+        const { authuser } = this.props;
         if (body === "" || body.trimLeft() === "" || body.trimRight() === "") return;
-        const data = { body, friendid: chatfriendid };
+        const data = { body, friendid: friend._id };
+        console.log(data);
         const newmessage = { ...data, time: Date.now() };
         chat_nsp.emit("new_message", newmessage);
         this.setState(
             {
-                body: ""
+                body: "",
+                typing: false
             },
             () => {
+                chat_nsp.emit("done_typing", { friend: friend._id });
                 this.chatBodyRef.scrollTop = this.chatBodyRef.scrollHeight;
             }
         );
+        this.props.appendMessage({ ...newmessage, sender: authuser._id });
         this.props.sendMessage(data);
     };
 
+    componentWillUnmount() {
+        const { chat_nsp } = this.state;
+        chat_nsp.disconnect();
+        this.setState({
+            chat_nsp: null
+        });
+    }
     render() {
-        const { body, typing } = this.state;
-        const { authuser } = this.props;
+        const { body, typing, friend } = this.state;
+        const { authuser, chatConversation } = this.props;
         const { _id } = authuser;
-        const chatm = this.props.chatConversation.conversation ? (
+        const { conversation } = chatConversation;
+        const chatm = conversation ? (
             this.props.chatConversation.conversation.messages.map((message, index) => {
                 const { body, sender } = message;
                 return (
@@ -122,17 +154,17 @@ class Chat extends Component {
                         <div className='camp-bubble-head'>
                             <div className='camp-bubble-head-user'></div>
                             <div className='camp-bubble-head-user-details'>
-                                <h4>Sammy daemon</h4>
+                                <h4>{friend.name}</h4>
                                 {typing ? (
-                                    <p style={{ color: "green" }}>typing...</p>
+                                    <p style={{ color: "green", fontWeight: "bolder" }}>
+                                        typing...
+                                    </p>
                                 ) : (
-                                    <p>@sammy</p>
+                                    <p>@{friend.nickname}</p>
                                 )}
                             </div>
                         </div>
-                        <div
-                            className='camp-bubble-body'
-                            ref={(ref) => (this.refs.chatBodyRef = ref)}>
+                        <div className='camp-bubble-body' ref={(ref) => (this.chatBodyRef = ref)}>
                             {chatm}
                         </div>
                         <div className='camp-bubble-leg'>
@@ -163,11 +195,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchConversation: (friendid) => {
-            return dispatch(fetchConversation(friendid));
+        fetchConversation: (conversationid, friendid) => {
+            return dispatch(fetchConversation(conversationid, friendid));
         },
         sendMessage: (data) => {
             return dispatch(sendMessage(data));
+        },
+        appendMessage: (data) => {
+            return dispatch(appendMessage(data));
         }
     };
 };

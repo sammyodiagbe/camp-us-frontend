@@ -36,3 +36,6 @@ export const SET_USER_NOTIFICATIONS = "SET_USER_NOTIFICATIONS";
 // get viewed post data
 export const SET_VIEWED_POST = "SET_VIEWED_POST";
 export const IS_GETTING_SAY = "IS_GETTING_SAY";
+
+// socket
+export const APPEND_MESSAGE = "APPEND_MESSAGE";
