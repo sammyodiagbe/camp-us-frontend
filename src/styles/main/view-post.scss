@@ -33,6 +33,38 @@ div.camp-a-say {
             padding-bottom: 1em;
         }
 
+        div.camp-say-comment-box {
+            padding: 0;
+            display: flex;
+
+            align-items: center;
+            border-radius: 20px;
+            margin: 0 0.8em;
+            form {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                padding: 0;
+                textarea {
+                    flex: 1;
+                    width: 100%;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    padding: 0.2em 0.4em;
+                    resize: none;
+
+                    &::placeholder {
+                        color: #888;
+                    }
+                }
+
+                button {
+                    padding: 0.8em 0.8em;
+                    background: dodgerblue;
+                    color: #fff;
+                    border-top-right-radius: 20px;
+                }
+            }
+        }
         div.camp-say-reaction {
             display: flex;
             padding: 0.3em 0;

@@ -16,6 +16,10 @@ class Notification extends Component {
     }
 
     render() {
+        const { authuser } = this.props;
+        if (!authuser) {
+            return <Redirect to='/auth/login' />;
+        }
         return (
             <React.Fragment>
                 <HeaderNav />
@@ -26,7 +30,9 @@ class Notification extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        authuser: state.authentication.user
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

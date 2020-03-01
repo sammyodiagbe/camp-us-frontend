@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FavoriteOutlined, ChatBubbleOutlineOutlined } from "@material-ui/icons";
 import NavigationBar from "../partials/navigation";
 import likeSound from "../../assets/audio/get-outta-here.ogg";
-import { likeOrUnlike, getViewedPostData, setViewedPost } from "../../redux/actions/post-comment";
+import { likeOrUnlike, getViewedPostData, addComment } from "../../redux/actions/post-comment";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../styles/main/view-post.css";
@@ -11,16 +11,38 @@ class ViewPost extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            comment: ""
+        };
     }
     componentDidMount() {
-        console.log("fetching post data ");
         const { postid } = this.props.match.params;
         this.props.getPost(postid);
     }
-    render() {
-        const { say, isgettingsay } = this.props;
 
+    handleInputChange = (e) => {
+        const { value } = e.target;
+        this.setState({
+            comment: value
+        });
+    };
+
+    comment = (e) => {
+        e.preventDefault();
+        const { _id } = this.props.say;
+        const { comment } = this.state;
+        if (comment.trimRight() === "" || comment.trimRight() === "") return;
+        this.props.comment(comment, _id);
+        this.setState({
+            comment: ""
+        });
+    };
+    render() {
+        const { say, isgettingsay, authuser } = this.props;
+        const { comment } = this.state;
+        if (!authuser) {
+            return <Redirect to='/auth/login' />;
+        }
         if (isgettingsay) {
             return (
                 <React.Fragment>
@@ -33,7 +55,6 @@ class ViewPost extends Component {
         } else if (typeof say.said_by != "undefined") {
             const { content, said_by, _id: postid, likes, comments } = say;
             const { nickname, name, _id } = said_by;
-
             return (
                 <React.Fragment>
                     <NavigationBar />
@@ -51,9 +72,27 @@ class ViewPost extends Component {
                                     <p>just now</p>
                                 </div>
                             </div>
+
                             <div className='camp-say-bottom'>
                                 <div className='camp-say-say'>
                                     <p>{content}</p>
+                                </div>
+                                <div className='camp-comments'>
+                                    {comments.length
+                                        ? comments.map((comment, index) => {
+                                              const { body, said_by } = comment;
+                                              return <p key={index}>{body}</p>;
+                                          })
+                                        : null}
+                                </div>
+                                <div className='camp-say-comment-box'>
+                                    <form noValidate onSubmit={this.comment}>
+                                        <textarea
+                                            placeholder='your comment'
+                                            value={comment}
+                                            onChange={this.handleInputChange}></textarea>
+                                        <button>comment</button>
+                                    </form>
                                 </div>
                                 <div className='camp-say-reaction'>
                                     <button
@@ -64,7 +103,7 @@ class ViewPost extends Component {
                                                 .then(() => {
                                                     sound.remove();
                                                 })
-                                                .catch((err) => console.log(err));
+                                                .catch((err) => {});
                                             likeOrUnlike(_id);
                                         }}>
                                         {likes.length}
@@ -101,7 +140,8 @@ const mapStateToProps = (state) => {
 
     return {
         say: conversation.viewedPost,
-        isgettingsay: interactions.isgettingsinglesay
+        isgettingsay: interactions.isgettingsinglesay,
+        authuser: state.authentication.user
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -111,6 +151,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getPost: (postid) => {
             return dispatch(getViewedPostData(postid));
+        },
+        comment: (comment, postid) => {
+            return dispatch(addComment(comment, postid));
         }
     };
 };

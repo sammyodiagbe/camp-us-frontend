@@ -3,6 +3,7 @@ import validateSignupFields from "../../helpers/validateSignupFields";
 import { connect } from "react-redux";
 import { createUserAccount } from "../../redux/actions/auth-actions";
 import "../../styles/authentication/auth.css";
+import { Link } from "react-router-dom";
 
 class Signup extends Component {
     constructor(props) {
@@ -125,6 +126,9 @@ class Signup extends Component {
                         <button type='submit'>Create Account</button>
                     </div>
                 </form>
+                <p>
+                    Already have an account <Link to='/auth/login'>Login</Link>
+                </p>
             </div>
         );
     }

@@ -14,7 +14,7 @@ export const getConversations = () => {
         getconversation
             .then((response) => {
                 console.log(response.data.conversations);
-                return dispatch(setConversations(response.data.conversations));
+                return dispatch(setConversations(response.data.conversations.reverse()));
             })
             .catch((err) => console.log(err));
     };

@@ -69,7 +69,6 @@ export const followUser = (id) => {
         follow
             .then((response) => {
                 console.log("data ", response.data);
-                dispatch(checkRelationship(id));
             })
             .catch((err) => console.log(err));
     };
@@ -82,7 +81,6 @@ export const unfollowUser = (id) => {
         unfollow
             .then((response) => {
                 console.log(response.data);
-                dispatch(checkRelationship(id));
             })
             .then((err) => console.log(err));
     };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Signup from "./components/authentication/signup";
 import Login from "./components/authentication/login";
@@ -22,7 +22,7 @@ class App extends Component {
     }
 
     render() {
-        const { isverifyingauth, Socket } = this.props;
+        const { isverifyingauth, Socket, user } = this.props;
         return (
             <React.Fragment>
                 {isverifyingauth ? (

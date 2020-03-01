@@ -44,6 +44,62 @@ div.camp-a-say div.camp-say-bottom div.camp-say-say {
   padding-bottom: 1em;
 }
 
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 20px;
+  margin: 0 0.8em;
+}
+
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+}
+
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box form textarea {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.2em 0.4em;
+  resize: none;
+}
+
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box form textarea::-webkit-input-placeholder {
+  color: #888;
+}
+
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box form textarea:-ms-input-placeholder {
+  color: #888;
+}
+
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box form textarea::-ms-input-placeholder {
+  color: #888;
+}
+
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box form textarea::placeholder {
+  color: #888;
+}
+
+div.camp-a-say div.camp-say-bottom div.camp-say-comment-box form button {
+  padding: 0.8em 0.8em;
+  background: dodgerblue;
+  color: #fff;
+  border-top-right-radius: 20px;
+}
+
 div.camp-a-say div.camp-say-bottom div.camp-say-reaction {
   display: -webkit-box;
   display: -ms-flexbox;

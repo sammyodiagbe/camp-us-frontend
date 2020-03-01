@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5000/api/camp-us";
+export const baseUrl = "https://konert.herokuapp.com";
 
 // authentication
 export const CREATE_ACCOUNT_ENDPOINT = `${baseUrl}/auth/create-account`;

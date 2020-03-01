@@ -19,6 +19,9 @@ class Messages extends Component {
 
     render() {
         const { conversations, authuser } = this.props;
+        if (!authuser) {
+            return <Redirect to='/auth/login' />;
+        }
 
         return (
             <React.Fragment>

@@ -33,6 +33,9 @@ class Search extends Component {
     render() {
         const { searchquery } = this.state;
         const { searchedusers, authuser } = this.props;
+        if (!authuser) {
+            return <Redirect to='/auth/login' />;
+        }
         return (
             <React.Fragment>
                 <HeaderNav />

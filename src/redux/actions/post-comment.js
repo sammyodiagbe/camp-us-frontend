@@ -48,7 +48,7 @@ export const haveASay = (content) => {
 
 export const addComment = (comment, postid) => {
     return (dispatch) => {
-        let addcomment = axios.post(COMMENT, { comment, postid }, { withCredentials: true });
+        let addcomment = axios.post(COMMENT, { body: comment, postid }, { withCredentials: true });
         addcomment
             .then((response) => {})
             .catch((err) => {
@@ -60,11 +60,7 @@ export const addComment = (comment, postid) => {
 export const likeOrUnlike = (postid) => {
     return (dispatch) => {
         let likeorunlike = axios.post(LIKE_UNLIKE, { say: postid }, { withCredentials: true });
-        likeorunlike
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((err) => console.log(err));
+        likeorunlike.then((response) => {}).catch((err) => console.log(err));
     };
 };
 

@@ -4,11 +4,15 @@ import {
     setViewProfile,
     getUserSays,
     getUserProfile,
-    checkRelationship
+    checkRelationship,
+    setRelationship,
+    setViewedUserProfileSays
 } from "../../redux/actions/profile";
 import NavigationBar from "../partials/navigation";
 import HeadBalloon from "../partials/head";
 import Says from "../partials/says";
+import io from "socket.io-client";
+import { baseUrl } from "../../helpers/api-end-points";
 
 class Profile extends Component {
     constructor(props) {
@@ -16,7 +20,8 @@ class Profile extends Component {
 
         this.state = {
             isAuthUsers: false,
-            page: "profile"
+            page: "profile",
+            feeds_socket: null
         };
     }
 
@@ -24,9 +29,14 @@ class Profile extends Component {
         const { user } = this.props;
         const { _id: authUserId } = user;
         const { profile_id } = this.props.match.params;
+        const feeds_socket = io.connect(`${baseUrl}/profile`);
+        if (!user) {
+            return <Redirect to='/auth/login' />;
+        }
         if (authUserId === profile_id) {
             this.setState({
-                isAuthUser: true
+                isAuthUser: true,
+                feeds_socket: feeds_socket
             });
             this.props.setViewProfile(user);
             this.props.getUserSays(authUserId);
@@ -37,7 +47,44 @@ class Profile extends Component {
             });
             this.props.getUserProfile(profile_id);
             this.props.checkRelationship(profile_id);
+            setInterval(() => {
+                feeds_socket.emit("get_relationship", { authUserId, profile_id });
+            }, 500);
         }
+
+        feeds_socket.on("connect", () => {
+            this.setState({
+                feeds_socket
+            });
+            feeds_socket.on("set_profile_feeds", (newfeeds) => {
+                this.props.setFeeds(newfeeds);
+            });
+
+            feeds_socket.on("set_relationship", (relationship) => {
+                this.props.setRelationship(relationship);
+            });
+        });
+
+        setInterval(() => {
+            const { isAuthUser } = this.state;
+            feeds_socket.emit("get_profile_feeds", {
+                oldFeeds: this.props.says,
+                profile_id: isAuthUser ? authUserId : profile_id
+            });
+        }, 500);
+    }
+
+    componentWillUnmount() {
+        const { feeds_socket } = this.state;
+        feeds_socket.disconnect();
+
+        this.setState({
+            feeds_socket: null
+        });
+
+        this.props.setFeeds([]);
+        this.props.setRelationship({});
+        this.props.setViewProfile({});
     }
 
     render() {
@@ -92,6 +139,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         checkRelationship: (authuserid, friendid) => {
             return dispatch(checkRelationship(authuserid, friendid));
+        },
+        setRelationship: (relationship) => {
+            return dispatch(setRelationship(relationship));
+        },
+        setFeeds: (feeds) => {
+            return dispatch(setViewedUserProfileSays(feeds));
         }
     };
 };

@@ -5,6 +5,7 @@ import { SendOutlined } from "@material-ui/icons";
 import { fetchConversation, sendMessage, appendMessage } from "../../redux/actions/chats";
 import { connect } from "react-redux";
 import io from "socket.io-client";
+import { baseUrl } from "../../helpers/api-end-points";
 
 class Chat extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class Chat extends Component {
     componentDidMount() {
         const { friendid } = this.props.match.params;
         const { _id } = this.props.authuser;
-        const { friend } = this.state;
+        //const { friend } = this.state;
         this.setState(
             {
                 friendid
@@ -32,7 +33,7 @@ class Chat extends Component {
                 this.props.fetchConversation(friendid);
             }
         );
-        const chat_nsp = io.connect("http://localhost:5000/chat");
+        const chat_nsp = io.connect(`${baseUrl}/chat`);
         chat_nsp.on("connect", () => {
             this.setState({
                 chat_nsp
@@ -45,7 +46,6 @@ class Chat extends Component {
             });
 
             chat_nsp.on("done_typing", () => {
-                console.log("done typing");
                 this.setState({
                     typing: false
                 });
@@ -99,7 +99,6 @@ class Chat extends Component {
         const { authuser } = this.props;
         if (body === "" || body.trimLeft() === "" || body.trimRight() === "") return;
         const data = { body, friendid: friend._id };
-        console.log(data);
         const newmessage = { ...data, time: Date.now() };
         chat_nsp.emit("new_message", newmessage);
         this.setState(
@@ -126,8 +125,12 @@ class Chat extends Component {
     render() {
         const { body, typing, friend } = this.state;
         const { authuser, chatConversation } = this.props;
+
         const { _id } = authuser;
         const { conversation } = chatConversation;
+        if (!authuser) {
+            return <Redirect to='/auth/login' />;
+        }
         const chatm = conversation ? (
             this.props.chatConversation.conversation.messages.map((message, index) => {
                 const { body, sender } = message;

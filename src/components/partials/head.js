@@ -25,6 +25,9 @@ class HeadBalloon extends Component {
         if (postText === "") return;
         // make post to the backend;
         this.props.postSay(postText);
+        this.setState({
+            postText: ""
+        });
     };
 
     unfollowUser = () => {

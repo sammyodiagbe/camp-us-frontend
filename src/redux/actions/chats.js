@@ -25,11 +25,7 @@ export const fetchConversation = (friendid) => {
 export const sendMessage = (data) => {
     return (dispatch) => {
         const sendmessage = axios.post(SEND_MESSAGE, data, { withCredentials: true });
-        sendmessage
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((err) => console.log(err));
+        sendmessage.then((response) => {}).catch((err) => console.log(err));
     };
 };
 
