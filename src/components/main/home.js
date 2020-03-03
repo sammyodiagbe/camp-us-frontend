@@ -4,9 +4,10 @@ import HeadBalloon from "../partials/head";
 import Says from "../partials/says";
 import { connect } from "react-redux";
 import { loadFeeds, setFeeds } from "../../redux/actions/post-comment";
-import { Redirect } from "react-router-dom";
 import io from "socket.io-client";
 import { baseUrl } from "../../helpers/api-end-points";
+import { Redirect } from "react-router-dom";
+import Placeholder from "../partials/placeholder";
 
 class Home extends Component {
     constructor(props) {
@@ -46,7 +47,7 @@ class Home extends Component {
     }
     static getDerivedStateFromProps = () => {};
     render() {
-        const { user } = this.props;
+        const { user, isgettingsays } = this.props;
         if (!user) {
             return <Redirect to='/auth/login' />;
         }
@@ -54,8 +55,15 @@ class Home extends Component {
             <React.Fragment>
                 <NavigationBar />
                 <div className='camp-main-content'>
-                    <HeadBalloon isAuthUser={true} user={user} />
-                    <Says says={this.props.newsfeeds.reverse()} />
+                    {isgettingsays ? (
+                        <p style={{ color: "red" }}>Getting some data</p>
+                    ) : (
+                        // <Placeholder />
+                        <React.Fragment>
+                            <HeadBalloon isAuthUser={true} user={user} />
+                            <Says says={this.props.newsfeeds.reverse()} />
+                        </React.Fragment>
+                    )}
                 </div>
             </React.Fragment>
         );
@@ -63,10 +71,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { authentication, conversation } = state;
+    const { authentication, conversation, interactions } = state;
     return {
         user: authentication.user,
-        newsfeeds: conversation.newsfeeds
+        newsfeeds: conversation.newsfeeds,
+        isgettingsays: interactions.isgettingsays
     };
 };
 

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { getConversations } from "../../redux/actions/conversations";
 import Conversation from "../partials/conversation";
 import "../../styles/conversation/conversation.css";
-
+import { Redirect } from "react-router-dom";
 class Messages extends Component {
     constructor(props) {
         super(props);

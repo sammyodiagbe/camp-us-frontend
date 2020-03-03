@@ -4,8 +4,8 @@ import NavigationBar from "../partials/navigation";
 import likeSound from "../../assets/audio/get-outta-here.ogg";
 import { likeOrUnlike, getViewedPostData, addComment } from "../../redux/actions/post-comment";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import "../../styles/main/view-post.css";
+import { Redirect, Link } from "react-router-dom";
 
 class ViewPost extends Component {
     constructor(props) {

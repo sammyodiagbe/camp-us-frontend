@@ -4,7 +4,8 @@ import {
     IS_LOGGING_IN,
     IS_GETTING_PROFILE_DETAILS,
     IS_GETTING_SAYS,
-    IS_GETTING_SAY
+    IS_GETTING_SAY,
+    IS_GETTING_CONVERSATION
 } from "../action-types";
 
 const initState = {
@@ -13,7 +14,8 @@ const initState = {
     isverifyingauthentication: false,
     isgettingprofiledetails: false,
     isgettingsays: false,
-    isgettingsinglesay: false
+    isgettingsinglesay: false,
+    isgettingconversation: false
 };
 
 export default function(state = initState, action) {
@@ -37,6 +39,9 @@ export default function(state = initState, action) {
 
         case IS_GETTING_SAY:
             state = { ...state, isgettingsinglesay: payload };
+            break;
+        case IS_GETTING_CONVERSATION:
+            state = { ...state, isgettingconversation: payload };
             break;
         default:
             break;

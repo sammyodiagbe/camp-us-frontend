@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HeaderNav from "../partials/navigation";
 import { connect } from "react-redux";
 import { getUserNotifications } from "../../redux/actions/notifications";
+import { Redirect } from "react-router-dom";
 
 class Notification extends Component {
     constructor(props) {

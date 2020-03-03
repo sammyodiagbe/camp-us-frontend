@@ -13,6 +13,7 @@ import HeadBalloon from "../partials/head";
 import Says from "../partials/says";
 import io from "socket.io-client";
 import { baseUrl } from "../../helpers/api-end-points";
+import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
     constructor(props) {
@@ -88,9 +89,19 @@ class Profile extends Component {
     }
 
     render() {
-        const { says, viewed_profile, isgettingprofile, isgettingsays, relationship } = this.props;
+        const {
+            says,
+            viewed_profile,
+            isgettingprofile,
+            isgettingsays,
+            relationship,
+            user
+        } = this.props;
 
         const { isAuthUser, page } = this.state;
+        if (!user) {
+            return <Redirect to='/auth/login' />;
+        }
         return (
             <React.Fragment>
                 <NavigationBar />

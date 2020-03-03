@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import "../../styles/navigation/navigation.css";
 import {
     HomeOutlined,
@@ -26,8 +26,11 @@ class NavigationBar extends Component {
     }
 
     render() {
-        const { user } = this.state;
+        const { user } = this.props;
         const { _id } = user ? user : {};
+        if (!user) {
+            return <Redirect to='/auth/login' />;
+        }
         return (
             <div className='camp-navigation-bar'>
                 <nav className='camp-mobile-navigation-bar'>

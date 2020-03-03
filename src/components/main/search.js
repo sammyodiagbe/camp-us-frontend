@@ -4,6 +4,7 @@ import HeaderNav from "../partials/navigation";
 import { connect } from "react-redux";
 import { findUser } from "../../redux/actions/search";
 import Searches from "../partials/search";
+import { Redirect } from "react-router-dom";
 
 class Search extends Component {
     constructor(props) {

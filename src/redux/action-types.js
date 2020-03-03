@@ -39,3 +39,5 @@ export const IS_GETTING_SAY = "IS_GETTING_SAY";
 
 // socket
 export const APPEND_MESSAGE = "APPEND_MESSAGE";
+
+export const IS_GETTING_CONVERSATION = "IS_GETTING_CONVERSATION";

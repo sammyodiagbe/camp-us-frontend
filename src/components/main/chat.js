@@ -6,6 +6,8 @@ import { fetchConversation, sendMessage, appendMessage } from "../../redux/actio
 import { connect } from "react-redux";
 import io from "socket.io-client";
 import { baseUrl } from "../../helpers/api-end-points";
+import { Redirect } from "react-router-dom";
+import Placeholder from "../partials/placeholder";
 
 class Chat extends Component {
     constructor(props) {
@@ -63,15 +65,18 @@ class Chat extends Component {
     }
 
     componentDidUpdate() {
-        this.chatBodyRef.scrollTop = this.chatBodyRef.scrollHeight;
+        const { isgettingconversation } = this.props;
+        if (!isgettingconversation) {
+            this.chatBodyRef.scrollTop = this.chatBodyRef.scrollHeight;
+        }
     }
 
     static getDerivedStateFromProps(nextProps, state) {
         const { chatConversation, authuser } = nextProps;
+
         if (typeof chatConversation.conversation !== "undefined") {
             const { conversation } = chatConversation;
             const { user1, user2 } = conversation;
-
             return {
                 friend: authuser._id === user1._id ? user2 : user1
             };
@@ -117,15 +122,17 @@ class Chat extends Component {
 
     componentWillUnmount() {
         const { chat_nsp } = this.state;
-        chat_nsp.disconnect();
-        this.setState({
-            chat_nsp: null
-        });
+        if (chat_nsp) {
+            chat_nsp.disconnect();
+            this.setState({
+                chat_nsp: null
+            });
+        }
     }
     render() {
         const { body, typing, friend } = this.state;
-        const { authuser, chatConversation } = this.props;
-
+        const { authuser, chatConversation, gettingconversation } = this.props;
+        console.log("getting data, ", gettingconversation);
         const { _id } = authuser;
         const { conversation } = chatConversation;
         if (!authuser) {
@@ -155,20 +162,64 @@ class Chat extends Component {
                 <div className='camp-main-content'>
                     <div className='camp-active-chat-bubble'>
                         <div className='camp-bubble-head'>
-                            <div className='camp-bubble-head-user'></div>
-                            <div className='camp-bubble-head-user-details'>
-                                <h4>{friend.name}</h4>
-                                {typing ? (
-                                    <p style={{ color: "green", fontWeight: "bolder" }}>
-                                        typing...
-                                    </p>
-                                ) : (
-                                    <p>@{friend.nickname}</p>
-                                )}
-                            </div>
+                            {gettingconversation ? (
+                                <React.Fragment>
+                                    <div className='camp-bubble-head-user'></div>
+                                    <div className='camp-chat-placeholder'>
+                                        <div className='camp-name'></div>
+                                        <div className='camp-username'></div>
+                                    </div>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <div className='camp-bubble-head-user'></div>
+                                    <div className='camp-bubble-head-user-details'>
+                                        <h4>{friend.name}</h4>
+                                        {typing ? (
+                                            <p style={{ color: "green", fontWeight: "bolder" }}>
+                                                typing...
+                                            </p>
+                                        ) : (
+                                            <p>@{friend.nickname}</p>
+                                        )}
+                                    </div>
+                                </React.Fragment>
+                            )}
                         </div>
                         <div className='camp-bubble-body' ref={(ref) => (this.chatBodyRef = ref)}>
-                            {chatm}
+                            {gettingconversation ? (
+                                <React.Fragment>
+                                    <div className='left'>
+                                        <div></div>
+                                    </div>
+                                    <div className='right'>
+                                        <div></div>
+                                    </div>
+                                    <div className='left'>
+                                        <div></div>
+                                    </div>
+                                    <div className='right'>
+                                        <div></div>
+                                    </div>
+                                    <div className='right'>
+                                        <div></div>
+                                    </div>
+                                    <div className='right'>
+                                        <div></div>
+                                    </div>
+                                    <div className='left'>
+                                        <div></div>
+                                    </div>
+                                    <div className='right'>
+                                        <div></div>
+                                    </div>
+                                    <div className='right'>
+                                        <div></div>
+                                    </div>
+                                </React.Fragment>
+                            ) : (
+                                chatm
+                            )}
                         </div>
                         <div className='camp-bubble-leg'>
                             <form noValidate onSubmit={this.sendMessage}>
@@ -189,10 +240,11 @@ class Chat extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { conversation, authentication } = state;
+    const { conversation, authentication, interactions } = state;
     return {
         chatConversation: conversation.activeBubble,
-        authuser: authentication.user
+        authuser: authentication.user,
+        gettingconversation: interactions.isgettingconversation
     };
 };
 
