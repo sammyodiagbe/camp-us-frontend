@@ -1,4 +1,4 @@
-export const baseUrl = "http://localhost:5000";
+export const baseUrl = "https://konert.herokuapp.com";
 export const apiUrl = `${baseUrl}/api/v1`;
 
 // authentication

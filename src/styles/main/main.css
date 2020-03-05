@@ -221,4 +221,31 @@ div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom di
 div.camp-main-content div.camp-render-says div.camp-a-say div.camp-say-bottom div.camp-say-reaction a:nth-child(1) {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+div.camp-loader {
+  background: #1468bb;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+div.camp-loader h2,
+div.camp-loader p {
+  font-weight: bold;
+}
+
+div.camp-loader h2 {
+  font-size: 2.5em;
+}
 /*# sourceMappingURL=main.css.map */

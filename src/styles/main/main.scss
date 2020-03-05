@@ -172,3 +172,22 @@ div.camp-main-content {
         }
     }
 }
+
+div.camp-loader {
+    background: rgb(20, 104, 187);
+    color: #fff;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    h2,
+    p {
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size: 2.5em;
+    }
+}

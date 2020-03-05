@@ -27,14 +27,17 @@ class App extends Component {
         return (
             <BrowserRouter>
                 {isverifyingauth ? (
-                    <div className='App'>Verifying authentication</div>
+                    <div className='App camp-loader'>
+                        <h2>Konert</h2>
+                        <p>Checking your ID...</p>
+                    </div>
                 ) : (
                     <div className='App'>
                         <Switch>
                             <Route
                                 exact
                                 path='/'
-                                render={(props) => <Home {...props} Socket={Socket} />}
+                                render={(props) => <Home {...props}  />}
                             />
                             <Route
                                 exact
@@ -49,33 +52,33 @@ class App extends Component {
                             <Route
                                 exact
                                 path='/profile/:profile_id'
-                                render={(props) => <Profile {...props} Socket={Socket} />}
+                                render={(props) => <Profile {...props}  />}
                             />
                             <Route
                                 exact
                                 path='/messages'
-                                render={(props) => <Message {...props} Socket={Socket} />}
+                                render={(props) => <Message {...props}  />}
                             />
                             <Route
                                 exact
                                 path='/chat/:friendid'
-                                render={(props) => <Chat {...props} Socket={Socket} />}
+                                render={(props) => <Chat {...props}  />}
                             />
 
                             <Route
                                 exact
                                 path='/search'
-                                render={(props) => <Search {...props} Socket={Socket} />}
+                                render={(props) => <Search {...props}  />}
                             />
                             <Route
                                 exact
                                 path='/notifications'
-                                render={(props) => <Notification {...props} Socket={Socket} />}
+                                render={(props) => <Notification {...props}  />}
                             />
                             <Route
                                 exact
                                 path='/view-post/:postid'
-                                render={(props) => <ViewPost {...props} Socket={Socket} />}
+                                render={(props) => <ViewPost {...props}  />}
                             />
                         </Switch>
                     </div>

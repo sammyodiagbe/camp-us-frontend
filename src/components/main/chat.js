@@ -18,7 +18,8 @@ class Chat extends Component {
             chat_nsp: null,
             typing: false,
             friend: {},
-            friendid: ""
+            friendid: "",
+            bottom: false
         };
     }
 
@@ -67,6 +68,11 @@ class Chat extends Component {
     componentDidUpdate() {
         const { isgettingconversation } = this.props;
         if (!isgettingconversation) {
+            const { bottom } = this.state;
+            if(bottom)  return;
+            this.setState({
+                bottom: !bottom
+            })
             this.chatBodyRef.scrollTop = this.chatBodyRef.scrollHeight;
         }
     }
@@ -105,13 +111,14 @@ class Chat extends Component {
         if (body === "" || body.trimLeft() === "" || body.trimRight() === "") return;
         const data = { body, friendid: friend._id };
         const newmessage = { ...data, time: Date.now() };
-        chat_nsp.emit("new_message", newmessage);
+        
         this.setState(
             {
                 body: "",
                 typing: false
             },
             () => {
+                chat_nsp.emit("new_message", newmessage);
                 chat_nsp.emit("done_typing", { friend: friend._id });
                 this.chatBodyRef.scrollTop = this.chatBodyRef.scrollHeight;
             }
