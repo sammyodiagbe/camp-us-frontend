@@ -22,7 +22,8 @@ class HeadBalloon extends Component {
     postSomething = (e) => {
         e.preventDefault();
         const { postText } = this.state;
-        if (postText === "") return;
+        const { isposting, isgettingsays } = this.props;
+        if (postText === "" || isposting || isgettingsays) return;
         // make post to the backend;
         this.props.postSay(postText);
         this.setState({
@@ -42,7 +43,7 @@ class HeadBalloon extends Component {
     };
     render() {
         const { postText } = this.state;
-        const { page, isAuthUser, user, relationship } = this.props;
+        const { page, isAuthUser, user, relationship, isposting, isgettingsays } = this.props;
         const { isMutual, isFollowing } = relationship ? relationship : {};
         const { name, nickname, _id } = user;
         const renderActions =
@@ -86,7 +87,11 @@ class HeadBalloon extends Component {
                                 placeholder='Have a say'
                                 value={postText}
                                 onChange={this.handleInputChange}></textarea>
-                            <button>Make post</button>
+                            {isposting ? (
+                                <button disabled={true}>Posting ...</button>
+                            ) : (
+                                <button> Make Post</button>
+                            )}
                         </form>
                     </div>
                 )}

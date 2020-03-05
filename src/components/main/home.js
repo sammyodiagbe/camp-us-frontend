@@ -18,36 +18,48 @@ class Home extends Component {
         };
     }
     componentDidMount() {
-        this.props.loadFeeds();
         const { newsfeeds, user } = this.props;
-        let feeds_socket = io.connect(`${baseUrl}/feeds`);
-        feeds_socket.on("connect", () => {
-            this.setState({
-                feeds_socket
-            });
-            feeds_socket.on("got_new_feeds", (newfeeds) => {
-                this.props.setFeeds(newfeeds);
-            });
-        });
 
-        setInterval(() => {
-            feeds_socket.emit("get_feeds_update", {
-                oldFeeds: newsfeeds,
-                authuserid: user._id
+        if (!user) {
+            return this.props.history.push("/auth/login");
+        }
+        if (newsfeeds.length <= 0) {
+            this.props.loadFeeds();
+        }
+        if (typeof user._id != "undefined") {
+            let feeds_socket = io.connect(`${baseUrl}/feeds`);
+            feeds_socket.on("connect", () => {
+                this.setState({
+                    feeds_socket
+                });
+
+                feeds_socket.emit("connection_", user._id);
+                feeds_socket.on("got_new_feeds", (newfeeds) => {
+                    this.props.setFeeds(newfeeds.reverse());
+                });
             });
-        }, 500);
+
+            setInterval(() => {
+                const { newsfeeds } = this.props;
+                feeds_socket.emit("get_feeds_update", {
+                    oldFeeds: newsfeeds,
+                    authuserid: user._id
+                });
+            }, 500);
+        }
     }
 
     componentWillUnmount() {
         const { feeds_socket } = this.state;
-        feeds_socket.disconnect();
-        this.setState({
-            feeds_socket: null
-        });
+        if (feeds_socket) {
+            feeds_socket.disconnect();
+            this.setState({
+                feeds_socket: null
+            });
+        }
     }
-    static getDerivedStateFromProps = () => {};
     render() {
-        const { user, isgettingsays } = this.props;
+        const { user, isgettingsays, isposting } = this.props;
         if (!user) {
             return <Redirect to='/auth/login' />;
         }
@@ -55,15 +67,15 @@ class Home extends Component {
             <React.Fragment>
                 <NavigationBar />
                 <div className='camp-main-content'>
-                    {isgettingsays ? (
-                        <p style={{ color: "red" }}>Getting some data</p>
-                    ) : (
-                        // <Placeholder />
-                        <React.Fragment>
-                            <HeadBalloon isAuthUser={true} user={user} />
-                            <Says says={this.props.newsfeeds.reverse()} />
-                        </React.Fragment>
-                    )}
+                    <React.Fragment>
+                        <HeadBalloon
+                            isAuthUser={true}
+                            user={user}
+                            isgettingsays={isgettingsays}
+                            isposting={isposting}
+                        />
+                        <Says says={this.props.newsfeeds} />
+                    </React.Fragment>
                 </div>
             </React.Fragment>
         );
@@ -75,7 +87,8 @@ const mapStateToProps = (state) => {
     return {
         user: authentication.user,
         newsfeeds: conversation.newsfeeds,
-        isgettingsays: interactions.isgettingsays
+        isgettingsays: interactions.isgettingsays,
+        isposting: interactions.isposting
     };
 };
 

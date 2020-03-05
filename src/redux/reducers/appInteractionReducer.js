@@ -5,6 +5,8 @@ import {
     IS_GETTING_PROFILE_DETAILS,
     IS_GETTING_SAYS,
     IS_GETTING_SAY,
+    IS_GETTING_CONVERSATIONS,
+    IS_POSTING,
     IS_GETTING_CONVERSATION
 } from "../action-types";
 
@@ -15,7 +17,9 @@ const initState = {
     isgettingprofiledetails: false,
     isgettingsays: false,
     isgettingsinglesay: false,
-    isgettingconversation: false
+    isgettingconversations: false,
+    isgettingconversation: false,
+    isposting: false
 };
 
 export default function(state = initState, action) {
@@ -40,6 +44,14 @@ export default function(state = initState, action) {
         case IS_GETTING_SAY:
             state = { ...state, isgettingsinglesay: payload };
             break;
+        case IS_GETTING_CONVERSATIONS:
+            state = { ...state, isgettingconversations: payload };
+            break;
+
+        case IS_POSTING:
+            state = { ...state, isposting: payload };
+            break;
+
         case IS_GETTING_CONVERSATION:
             state = { ...state, isgettingconversation: payload };
             break;

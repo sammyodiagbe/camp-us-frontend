@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logUserIn } from "../../redux/actions/auth-actions";
 import "../../styles/authentication/auth.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Login extends Component {
     constructor(props) {
@@ -29,9 +29,22 @@ class Login extends Component {
         const { input: data } = this.state;
         this.props.login(data);
     };
+
+    // static getDerivedStateFromProps = (props) => {
+    //     console.log(props);
+    //     const { user } = props;
+    //     if (user) {
+    //         this.props.history.push("/");
+    //     }
+    //     return {};
+    // };
     render() {
         const { input } = this.state;
         const { username, password } = input;
+        const { user } = this.props;
+        if (user) {
+            return <Redirect to='/' />;
+        }
         return (
             <div className='camp-auth-container'>
                 <h1 className='camp-auth-title'>Login</h1>

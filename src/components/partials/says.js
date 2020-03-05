@@ -12,7 +12,7 @@ class Says extends Component {
         this.state = {};
     }
     render() {
-        const { says, likeOrUnlike } = this.props;
+        const { says, likeOrUnlike, isposting, isgettingsays } = this.props;
         const renderSays = says ? (
             says.map((say, index) => {
                 const { content, said_by, _id, likes, comments } = say;
@@ -69,9 +69,84 @@ class Says extends Component {
         ) : (
             <div>hello</div>
         );
-        return <div className='camp-render-says'>{renderSays}</div>;
+        return (
+            <div className='camp-render-says'>
+                {isposting && (
+                    <div className='camp-say-placeholder'>
+                        <div className='camp-say-like'>
+                            <div className='left'></div>
+                            <div className='right'>
+                                <div className='name'></div>
+                                <div className='nick'></div>
+                            </div>
+                        </div>
+                        <div className='camp-say-text'>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                )}
+                {isgettingsays ? (
+                    <React.Fragment>
+                        <div className='camp-say-placeholder'>
+                            <div className='camp-say-like'>
+                                <div className='left'></div>
+                                <div className='right'>
+                                    <div className='name'></div>
+                                    <div className='nick'></div>
+                                </div>
+                            </div>
+                            <div className='camp-say-text'>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div className='camp-say-placeholder'>
+                            <div className='camp-say-like'>
+                                <div className='left'></div>
+                                <div className='right'>
+                                    <div className='name'></div>
+                                    <div className='nick'></div>
+                                </div>
+                            </div>
+                            <div className='camp-say-text'>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div className='camp-say-placeholder'>
+                            <div className='camp-say-like'>
+                                <div className='left'></div>
+                                <div className='right'>
+                                    <div className='name'></div>
+                                    <div className='nick'></div>
+                                </div>
+                            </div>
+                            <div className='camp-say-text'>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                ) : (
+                    renderSays
+                )}
+            </div>
+        );
     }
 }
+
+const mapStateToProps = (state) => {
+    const { interactions } = state;
+    return {
+        isgettingsays: interactions.isgettingsays,
+        isposting: interactions.isposting
+    };
+};
 const mapDispatchToProps = (dispatch) => {
     return {
         likeOrUnlike: (postid) => {
@@ -79,4 +154,4 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 };
-export default connect(null, mapDispatchToProps)(Says);
+export default connect(mapStateToProps, mapDispatchToProps)(Says);

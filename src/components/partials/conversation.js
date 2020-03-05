@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Conversation = ({ authuser, conversations }) => {
+const Conversation = ({ authuser, conversations, isgettingconversations }) => {
     console.log(conversations);
     const renderConversations = conversations.map((conversation, index) => {
         const { messages, user1, user2 } = conversation;
@@ -21,7 +21,51 @@ const Conversation = ({ authuser, conversations }) => {
         );
     });
 
-    return <React.Fragment>{renderConversations}</React.Fragment>;
+    return (
+        <React.Fragment>
+            {isgettingconversations ? (
+                <React.Fragment>
+                    <div className='camp-conversation-placeholder'>
+                        <div className='left'></div>
+                        <div className='right'>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className='camp-conversation-placeholder'>
+                        <div className='left'></div>
+                        <div className='right'>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className='camp-conversation-placeholder'>
+                        <div className='left'></div>
+                        <div className='right'>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className='camp-conversation-placeholder'>
+                        <div className='left'></div>
+                        <div className='right'>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className='camp-conversation-placeholder'>
+                        <div className='left'></div>
+                        <div className='right'>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </React.Fragment>
+            ) : (
+                renderConversations
+            )}
+        </React.Fragment>
+    );
 };
 
 export default Conversation;

@@ -178,3 +178,69 @@ div.right {
         background: lightgray;
     }
 }
+
+div.camp-say-placeholder {
+    background: #fff;
+    margin-bottom: 10px;
+    div.camp-say-like {
+        display: flex;
+        align-items: center;
+        div.left {
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            background: lightgray;
+        }
+        div.right {
+            display: block;
+            div.name {
+                width: 120px;
+                height: 10px;
+                margin-bottom: 10px;
+            }
+
+            div.nick {
+                height: 10px;
+            }
+        }
+    }
+    div.camp-say-text {
+        padding: 1em 1em;
+        div {
+            height: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            background: lightgray;
+            :nth-child(2) {
+                width: 60%;
+            }
+        }
+    }
+}
+
+div.camp-conversation-placeholder {
+    display: flex;
+    background: #fff;
+    align-items: center;
+    padding: 1em;
+    div.left {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        background: lightgray;
+    }
+
+    div.right {
+        margin-left: 3px;
+        display: block;
+        div {
+            height: 10px;
+            background: lightgray;
+            width: 80px;
+            margin-bottom: 10px;
+            :nth-child(2) {
+                width: 180px;
+            }
+        }
+    }
+}

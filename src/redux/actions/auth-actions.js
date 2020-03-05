@@ -32,7 +32,8 @@ export const logUserIn = (data) => {
         const logUserIn = axios.post(LOG_IN_USER, data, { withCredentials: true });
         logUserIn
             .then((response) => {
-                console.log(response.data);
+                const { user } = response.data;
+                dispatch(setActiveUser(user))
                 dispatch(isLoggingIn(false));
             })
             .catch((err) => dispatch(isLoggingIn(false)));

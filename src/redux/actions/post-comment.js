@@ -8,7 +8,7 @@ import {
 } from "../../helpers/api-end-points";
 import donePosting from "../../assets/audio/insight.ogg";
 import { SET_FEEDS, SET_VIEWED_POST } from "../action-types";
-import { isGettingPost } from "./app-interaction";
+import { isGettingPost, isGettingUserSays, isPosting } from "./app-interaction";
 
 export const setViewedPost = (data) => {
     return {
@@ -29,6 +29,7 @@ export const getViewedPostData = (postid) => {
 };
 export const haveASay = (content) => {
     return (dispatch) => {
+        dispatch(isPosting(true));
         let makeSay = axios.post(HAVE_SAY, { content }, { withCredentials: true });
         makeSay
             .then((response) => {
@@ -39,9 +40,10 @@ export const haveASay = (content) => {
                         audio.remove();
                     })
                     .catch((err) => console.log(err));
+                dispatch(isPosting(false));
             })
             .catch((err) => {
-                console.log(err);
+                dispatch(isPosting(false));
             });
     };
 };
@@ -73,13 +75,15 @@ export const setFeeds = (feeds) => {
 
 export const loadFeeds = () => {
     return (dispatch) => {
+        dispatch(isGettingUserSays(true));
         let gettingfeeds = axios.get(LOAD_FEEDS, { withCredentials: true });
         gettingfeeds
             .then((response) => {
                 const { data } = response;
                 const { feeds } = data;
-                dispatch(setFeeds(feeds));
+                dispatch(setFeeds(feeds.reverse()));
+                dispatch(isGettingUserSays(false));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => dispatch(isGettingUserSays(false)));
     };
 };

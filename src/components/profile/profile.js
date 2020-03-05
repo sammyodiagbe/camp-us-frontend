@@ -27,7 +27,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        const { user } = this.props;
+        const { user, says } = this.props;
         const { _id: authUserId } = user;
         const { profile_id } = this.props.match.params;
         const feeds_socket = io.connect(`${baseUrl}/profile`);
@@ -40,7 +40,9 @@ class Profile extends Component {
                 feeds_socket: feeds_socket
             });
             this.props.setViewProfile(user);
-            this.props.getUserSays(authUserId);
+            if (says.length <= 0) {
+                this.props.getUserSays(authUserId);
+            }
         } else {
             // get the user profile
             this.setState({
@@ -106,19 +108,15 @@ class Profile extends Component {
             <React.Fragment>
                 <NavigationBar />
                 <div className='camp-main-content'>
-                    {isgettingsays || isgettingprofile ? (
-                        <p>Getting details hold on</p>
-                    ) : (
-                        <React.Fragment>
-                            <HeadBalloon
-                                isAuthUser={isAuthUser}
-                                page={page}
-                                user={viewed_profile}
-                                relationship={relationship}
-                            />
-                            <Says says={says} />{" "}
-                        </React.Fragment>
-                    )}
+                    <React.Fragment>
+                        <HeadBalloon
+                            isAuthUser={isAuthUser}
+                            page={page}
+                            user={viewed_profile}
+                            relationship={relationship}
+                        />
+                        <Says says={says} />
+                    </React.Fragment>
                 </div>
             </React.Fragment>
         );

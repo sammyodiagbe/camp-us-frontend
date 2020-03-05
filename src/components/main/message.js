@@ -18,16 +18,17 @@ class Messages extends Component {
     }
 
     render() {
-        const { conversations, authuser } = this.props;
-        if (!authuser) {
-            return <Redirect to='/auth/login' />;
-        }
+        const { conversations, authuser, isgettingconversations } = this.props;
 
         return (
             <React.Fragment>
                 <NavigationBar />
                 <div className='camp-main-content'>
-                    <Conversation conversations={conversations} authuser={authuser} />
+                    <Conversation
+                        conversations={conversations}
+                        authuser={authuser}
+                        isgettingconversations={isgettingconversations}
+                    />
                 </div>
             </React.Fragment>
         );
@@ -35,11 +36,12 @@ class Messages extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { conversation, authentication } = state;
+    const { conversation, authentication, interactions } = state;
 
     return {
         conversations: conversation.conversations,
-        authuser: authentication.user
+        authuser: authentication.user,
+        isgettingconversations: interactions.isgettingconversations
     };
 };
 

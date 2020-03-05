@@ -68,4 +68,88 @@ div.right div {
   border-radius: 10px;
   background: lightgray;
 }
+
+div.camp-say-placeholder {
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+div.camp-say-placeholder div.camp-say-like {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.camp-say-placeholder div.camp-say-like div.left {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background: lightgray;
+}
+
+div.camp-say-placeholder div.camp-say-like div.right {
+  display: block;
+}
+
+div.camp-say-placeholder div.camp-say-like div.right div.name {
+  width: 120px;
+  height: 10px;
+  margin-bottom: 10px;
+}
+
+div.camp-say-placeholder div.camp-say-like div.right div.nick {
+  height: 10px;
+}
+
+div.camp-say-placeholder div.camp-say-text {
+  padding: 1em 1em;
+}
+
+div.camp-say-placeholder div.camp-say-text div {
+  height: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  background: lightgray;
+}
+
+div.camp-say-placeholder div.camp-say-text div :nth-child(2) {
+  width: 60%;
+}
+
+div.camp-conversation-placeholder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1em;
+}
+
+div.camp-conversation-placeholder div.left {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background: lightgray;
+}
+
+div.camp-conversation-placeholder div.right {
+  margin-left: 3px;
+  display: block;
+}
+
+div.camp-conversation-placeholder div.right div {
+  height: 10px;
+  background: lightgray;
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+div.camp-conversation-placeholder div.right div :nth-child(2) {
+  width: 180px;
+}
 /*# sourceMappingURL=placeholder.css.map */

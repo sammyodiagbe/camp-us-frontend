@@ -3,7 +3,7 @@ import validateSignupFields from "../../helpers/validateSignupFields";
 import { connect } from "react-redux";
 import { createUserAccount } from "../../redux/actions/auth-actions";
 import "../../styles/authentication/auth.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Signup extends Component {
     constructor(props) {
@@ -54,6 +54,10 @@ class Signup extends Component {
     render() {
         const { input } = this.state;
         const { name, email, password, cpassword, nickname } = input;
+        const { user } = this.props;
+        if (user) {
+            return <Redirect to='/' />;
+        }
         return (
             <div className='camp-auth-container'>
                 <h1 className='camp-auth-title'>Create Account</h1>
